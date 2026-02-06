@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var jump_force := -350.0
 @export var gravity := 900.0
 @export var friction := 0.8 # lower number = more friction, 0 is instant stop, 1 is no friction
-@export var acceleration := 0.2 # % of speed applied each frame up to speed
+@export var acceleration := 0.02 # % of speed applied each frame up to speed
 
 var is_attacking = false
 
@@ -76,7 +76,7 @@ func update_animation(dir):
 		elif dir == 0:
 			sprite.play("Idle")
 		else:
-			sprite.play("Walk",abs(velocity.x)/speed)
+			sprite.play("Walk",abs(velocity.x)/50)
 	# Air animations
 	else:
 		if velocity.y < 0:

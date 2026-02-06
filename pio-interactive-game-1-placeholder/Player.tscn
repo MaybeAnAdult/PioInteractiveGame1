@@ -11,27 +11,27 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
 size = Vector2(32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6ohk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtqjt"]
 atlas = ExtResource("2_dtqjt")
 region = Rect2(0, 0, 42, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oudfo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ncpa"]
 atlas = ExtResource("2_dtqjt")
 region = Rect2(42, 0, 42, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d6rpx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi0c6"]
 atlas = ExtResource("2_dtqjt")
 region = Rect2(84, 0, 42, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3kul"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp6x6"]
 atlas = ExtResource("2_dtqjt")
 region = Rect2(126, 0, 42, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jatw7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tkgg"]
 atlas = ExtResource("2_dtqjt")
 region = Rect2(168, 0, 42, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rv870"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ohk"]
 atlas = ExtResource("2_dtqjt")
 region = Rect2(210, 0, 42, 42)
 
@@ -151,22 +151,22 @@ region = Rect2(210, 0, 42, 42)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dtqjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ncpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi0c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp6x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tkgg")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l6ohk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oudfo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d6rpx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r3kul")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jatw7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rv870")
 }],
 "loop": false,
 "name": &"Attack",
@@ -300,7 +300,7 @@ shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"Crouch"
+animation = &"Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
