@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://curbjak3fwiny"
-path="res://.godot/imported/Jump.png-bb964dd8cc7632148f72960ead80ca1f.ctex"
+uid="uid://rp7pqssxy7xm"
+path="res://.godot/imported/Walk-Sheet.png-3f7cb6f99aae99201912d06a1739142a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Spritesheets/Player/Jump.png"
-dest_files=["res://.godot/imported/Jump.png-bb964dd8cc7632148f72960ead80ca1f.ctex"]
+source_file="res://Spritesheets/Player/Walk-Sheet.png"
+dest_files=["res://.godot/imported/Walk-Sheet.png-3f7cb6f99aae99201912d06a1739142a.ctex"]
 
 [params]
 
