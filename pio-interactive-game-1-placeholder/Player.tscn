@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://rp7pqssxy7xm" path="res://Spritesheets/Player/Walk-Sheet.png" id="7_l6ohk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
-size = Vector2(24, 32)
+size = Vector2(15.8125, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oudfo"]
 atlas = ExtResource("2_dtqjt")
