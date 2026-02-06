@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmlqdcdv8kqto"
-path="res://.godot/imported/Squat.png-f888317385febe4eff43c96440eff799.ctex"
+uid="uid://2jhux811gcct"
+path="res://.godot/imported/Attack2.png-dff7d3fa3ccc81ab4059648f88538b38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Squat.png"
-dest_files=["res://.godot/imported/Squat.png-f888317385febe4eff43c96440eff799.ctex"]
+source_file="res://Spritesheets/Player/Attack2.png"
+dest_files=["res://.godot/imported/Attack2.png-dff7d3fa3ccc81ab4059648f88538b38.ctex"]
 
 [params]
 

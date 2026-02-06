@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var speed := 200.0
 @export var jump_force := -350.0
 @export var gravity := 900.0
+@export var friction := 0.8 # lower number = more friction, 0 is instant stop, 1 is no friction
+@export var acceleration := 0.2 # % of speed applied each frame up to speed
 
 var is_attacking = false
 
@@ -34,7 +36,15 @@ func _physics_process(delta):
 	
 	# Horizontal movement
 	var dir = Input.get_axis("Move_Left", "Move_Right")
-	velocity.x = dir * speed
+	#velocity.x = dir * speed
+	if dir == 0 || dir != velocity.x/abs(velocity.x):
+		velocity.x = velocity.x * friction
+	
+	if abs(velocity.x) < speed:
+		velocity.x += dir * (speed * acceleration)
+	
+	print("Direction:",dir)
+	print("Velocity:",velocity.x)
 	
 	move_and_slide()
 	update_animation(dir)
@@ -66,7 +76,7 @@ func update_animation(dir):
 		elif dir == 0:
 			sprite.play("Idle")
 		else:
-			sprite.play("Walk")
+			sprite.play("Walk",abs(velocity.x)/speed)
 	# Air animations
 	else:
 		if velocity.y < 0:
