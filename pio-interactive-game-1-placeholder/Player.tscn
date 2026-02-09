@@ -75,6 +75,18 @@ region = Rect2(208, 0, 52, 42)
 atlas = ExtResource("4_wi0c6")
 region = Rect2(260, 0, 52, 42)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtqjt"]
+atlas = ExtResource("6_3tkgg")
+region = Rect2(260, 0, 52, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ncpa"]
+atlas = ExtResource("6_3tkgg")
+region = Rect2(312, 0, 52, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi0c6"]
+atlas = ExtResource("6_3tkgg")
+region = Rect2(364, 0, 52, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ictha"]
 atlas = ExtResource("5_hp6x6")
 region = Rect2(0, 0, 52, 42)
@@ -110,18 +122,6 @@ region = Rect2(156, 0, 52, 42)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrbh7"]
 atlas = ExtResource("6_3tkgg")
 region = Rect2(208, 0, 52, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrhq4"]
-atlas = ExtResource("6_3tkgg")
-region = Rect2(260, 0, 52, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ibubc"]
-atlas = ExtResource("6_3tkgg")
-region = Rect2(312, 0, 52, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gueye"]
-atlas = ExtResource("6_3tkgg")
-region = Rect2(364, 0, 52, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3tfrk"]
 atlas = ExtResource("7_l6ohk")
@@ -214,6 +214,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dtqjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ncpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi0c6")
+}],
+"loop": false,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ictha")
 }, {
 "duration": 1.0,
@@ -244,15 +258,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mrbh7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrhq4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ibubc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gueye")
 }],
 "loop": true,
 "name": &"Jump",
@@ -301,7 +306,7 @@ shape = SubResource("RectangleShape2D_kpjcp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"Crouch"
+animation = &"Fall"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")

@@ -3,9 +3,9 @@ extends CharacterBody2D
 @export var speed := 200.0
 @export var jump_force := -350.0
 @export var gravity := 900.0
-@export var friction := 0.8 # lower number = more friction, 0 is instant stop, 1 is no friction
+@export var friction := 0.95 # lower number = more friction, 0 is instant stop, 1 is no friction
 @export var acceleration := 0.02 # % of speed applied each frame up to speed
-
+@export var dash_force := 500 # 
 var is_attacking = false
 
 # Jump
@@ -35,14 +35,26 @@ func _physics_process(delta):
 		coyote_timer = 0
 	
 	# Horizontal movement
-	var dir = Input.get_axis("Move_Left", "Move_Right")
+	var dir = Input.get_axis("Move_Left", "Move_Right",)
 	#velocity.x = dir * speed
 	if dir == 0 || dir != velocity.x/abs(velocity.x):
 		velocity.x = velocity.x * friction
 	
 	if abs(velocity.x) < speed:
 		velocity.x += dir * (speed * acceleration)
-	
+	#Dash in air
+	var vert = Input.get_axis("Look_Up", "Crouch",)
+	var dash = false
+	if Input.is_action_just_pressed("Dash") and not is_on_floor():
+		velocity.x += (dash_force * dir)
+		velocity.y += (dash_force * vert)
+	#Dash on ground
+	if Input.is_action_just_pressed("Dash") and is_on_floor():
+		velocity.x += (dash_force * dir)
+#Return to normal speed after dash
+	if abs(velocity.x) > speed:
+		velocity.x = velocity.x * friction
+
 	print("Direction:",dir)
 	print("Velocity:",velocity.x)
 	
