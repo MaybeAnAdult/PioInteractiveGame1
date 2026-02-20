@@ -1,2 +1,7 @@
-res://player.gd
-res://Player.tscn
+res://playercomponent.tscn
+res://Scripts/damage.gd
+res://Scripts/gravity.gd
+res://Scripts/playercomponent.gd
+res://Scripts/movement.gd
+res://Scripts/dash.gd
+res://Scripts/input.gd

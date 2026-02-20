@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dpjmnycjl2rra"]
 
 [ext_resource type="Texture2D" uid="uid://c3fqurje6qa76" path="res://Tileset.png" id="1_0e48y"]
-[ext_resource type="PackedScene" uid="uid://drg4mle5pn3c3" path="res://Player.tscn" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://b84ptg7u5c6s0" path="res://playercomponent.tscn" id="2_0e48y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
 texture = ExtResource("1_0e48y")
@@ -446,4 +446,3 @@ tile_map_data = PackedByteArray("AAAAAAQAAAADAAgAAAABAAQAAAAEAAgAAAACAAQAAAABAAg
 tile_set = SubResource("TileSet_0hol4")
 
 [node name="Player" parent="." unique_id=777074863 instance=ExtResource("2_0e48y")]
-position = Vector2(45, 34)

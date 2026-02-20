@@ -23,7 +23,7 @@ func _physics_process(delta):
 		coyote_timer = coyote_time
 	
 	# Jump Buffer
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("jump"):
 		jump_buffer_counter = jump_buffer_time
 	else:
 		jump_buffer_counter -= delta
@@ -35,7 +35,7 @@ func _physics_process(delta):
 		coyote_timer = 0
 	
 	# Horizontal movement
-	var dir = Input.get_axis("Move_Left", "Move_Right",)
+	var dir = Input.get_axis("move_left", "move_right",)
 	#velocity.x = dir * speed
 	if dir == 0 || dir != velocity.x/abs(velocity.x):
 		velocity.x = velocity.x * friction
@@ -43,13 +43,13 @@ func _physics_process(delta):
 	if abs(velocity.x) < speed:
 		velocity.x += dir * (speed * acceleration)
 	#Dash in air
-	var vert = Input.get_axis("Look_Up", "Crouch",)
+	var vert = Input.get_axis("move_up", "move_down",)
 	var dash = false
-	if Input.is_action_just_pressed("Dash") and not is_on_floor():
+	if Input.is_action_just_pressed("dash") and not is_on_floor():
 		velocity.x += (dash_force * dir)
 		velocity.y += (dash_force * vert)
 	#Dash on ground
-	if Input.is_action_just_pressed("Dash") and is_on_floor():
+	if Input.is_action_just_pressed("dash") and is_on_floor():
 		velocity.x += (dash_force * dir)
 #Return to normal speed after dash
 	if abs(velocity.x) > speed:
@@ -65,15 +65,15 @@ func update_animation(dir):
 	var sprite = $AnimatedSprite2D
 	
 	# Check if currently crouching (holding the button)
-	var is_crouched = Input.is_action_pressed("Crouch") and is_on_floor()
+	var is_crouched = Input.is_action_pressed("move_down") and is_on_floor()
 	
 	# Handle attack
-	if Input.is_action_just_pressed("Attack") and not is_attacking:
+	if Input.is_action_just_pressed("attack") and not is_attacking:
 		is_attacking = true
 		if is_crouched:
-			sprite.play("Crouch_Attack")
+			sprite.play("crouch_attack")
 		else:
-			sprite.play("Attack")
+			sprite.play("attack")
 		return
 	
 	# If attacking, don't change animation
@@ -83,18 +83,18 @@ func update_animation(dir):
 	# Ground animations
 	if is_on_floor():
 		if is_crouched:
-			if sprite.animation != "Crouch":
-				sprite.play("Crouch")
+			if sprite.animation != "crouch":
+				sprite.play("crouch")
 		elif dir == 0:
-			sprite.play("Idle")
+			sprite.play("idle")
 		else:
-			sprite.play("Walk",abs(velocity.x)/50)
+			sprite.play("walk",abs(velocity.x)/50)
 	# Air animations
 	else:
 		if velocity.y < 0:
-			sprite.play("Jump")
+			sprite.play("jump")
 		else:
-			sprite.play("Fall")
+			sprite.play("fall")
 	
 	# Flip sprite based on direction
 	if dir != 0:
@@ -103,12 +103,12 @@ func update_animation(dir):
 func _on_animated_sprite_2d_animation_finished():
 	var sprite = $AnimatedSprite2D
 	
-	if sprite.animation == "Attack":
+	if sprite.animation == "attack":
 		is_attacking = false
-	elif sprite.animation == "Crouch_Attack":
+	elif sprite.animation == "crouch_attack":
 		is_attacking = false
 		# Go back to crouch pose if still holding crouch button
-		if Input.is_action_pressed("Crouch") and is_on_floor():
-			sprite.play("Crouch")
-			sprite.frame = sprite.sprite_frames.get_frame_count("Crouch") - 1
+		if Input.is_action_pressed("crouch") and is_on_floor():
+			sprite.play("crouch")
+			sprite.frame = sprite.sprite_frames.get_frame_count("crouch") - 1
 			sprite.pause()
