@@ -17,7 +17,11 @@ func handle_horizontal_flip(move_direction: float) -> void:
 
 func update_animation(move_direction: float, is_jumping: bool, is_falling: bool):
 	handle_horizontal_flip(move_direction)
-	# Jump has highest priority
+	
+# Check if crouching (holding down on ground)
+	var is_crouching = Input.is_action_pressed("move_down") and not is_falling and not is_jumping
+	
+# Jump has highest priority
 	if is_jumping:
 		sprite.play("jump")
 		return
@@ -25,8 +29,14 @@ func update_animation(move_direction: float, is_jumping: bool, is_falling: bool)
 	if is_falling:
 		sprite.play("fall")
 		return
+		
+# Crouch on ground
+	if is_crouching:
+		if sprite.animation != "crouch":
+			sprite.play("crouch")
+		return
 
-	# Ground movement
+# Ground movement
 	handle_horizontal_flip(move_direction)
 
 	if move_direction != 0:
@@ -34,4 +44,4 @@ func update_animation(move_direction: float, is_jumping: bool, is_falling: bool)
 	else:
 		sprite.play("idle")
 		
-	print(move_direction)
+#print(move_direction)

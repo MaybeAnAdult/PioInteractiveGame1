@@ -5,3 +5,7 @@ res://Scripts/playercomponent.gd
 res://Scripts/movement.gd
 res://Scripts/dash.gd
 res://Scripts/input.gd
+res://Scripts/animate.gd
+res://Scripts/jump.gd
+res://node_2d.tscn
+res://Scripts/attack.gd

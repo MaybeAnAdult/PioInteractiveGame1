@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://barg5kiblh703" path="res://Scripts/movement.gd" id="11_sb71o"]
 [ext_resource type="Script" uid="uid://b0c46hvxnyv36" path="res://Scripts/animate.gd" id="12_1v1y8"]
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
-[ext_resource type="Script" uid="uid://bpyydouovoue6" path="res://Scripts/attack.gd" id="14_dinke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
 size = Vector2(15.8125, 32)
@@ -319,7 +318,7 @@ shape = SubResource("RectangleShape2D_kpjcp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"idle"
+animation = &"walk"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
@@ -343,9 +342,6 @@ sprite = NodePath("../AnimatedSprite2D")
 
 [node name="dash" type="Node" parent="Player" unique_id=1417286952]
 script = ExtResource("13_tfb15")
-
-[node name="attack" type="Node" parent="Player" unique_id=1741045720]
-script = ExtResource("14_dinke")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
 limit_left = -10000002
