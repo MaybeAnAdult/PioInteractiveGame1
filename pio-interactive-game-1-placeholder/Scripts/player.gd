@@ -55,8 +55,8 @@ func _physics_process(delta):
 	if abs(velocity.x) > speed:
 		velocity.x = velocity.x * friction
 
-	print("Direction:",dir)
-	print("Velocity:",velocity.x)
+	#print("Direction:",dir)
+	#print("Velocity:",velocity.x)
 	
 	move_and_slide()
 	update_animation(dir)

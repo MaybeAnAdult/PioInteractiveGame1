@@ -7,7 +7,7 @@ extends Node
 
 
 func handle_horizontal_flip(move_direction: float) -> void:
-	print("Direction:", move_direction)
+	#print("Direction:", move_direction)
 
 	if move_direction > 0:
 		sprite.flip_h = false
