@@ -31,8 +31,8 @@ func handle_dash(body: CharacterBody2D, want_to_dash: bool, direction: Vector2, 
 		var tween = create_tween()
 		tween.tween_property(body, "velocity:x", (dash_distance * direction[0]), dash_time).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN)
 		tween.tween_property(body, "velocity:y", (dash_distance * direction[1]), dash_time).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN)
-	if cooldown_timer >= dash_time:
-		gravity.is_falling = true
+	#if cooldown_timer >= dash_time:
+	#	gravity.is_freefall = true
 
 func reset_dashes() -> void:
 	dashes_available = max_dashes

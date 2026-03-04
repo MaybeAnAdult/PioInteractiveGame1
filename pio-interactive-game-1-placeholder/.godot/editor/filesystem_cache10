@@ -1,8 +1,8 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1772636684
+::res://::1772636857
 bw_tiles.png::CompressedTexture2D::7138159748534834798::1772635785::1772636685::1::::<><><>0<>0<>79fd99b976be444531865a9f9d85cbbe<>res://.godot/imported/bw_tiles.png-00894ef2ed4375df68a34fc7f4c89f10.ctex::
 icon.svg::CompressedTexture2D::4286585919530636826::1770386106::1770386177::1::::<><><>0<>0<>11376ed6424b6512b394c501a948a744<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-node_2d.tscn::PackedScene::8231427188745000366::1772635501::0::1::::<><><>0<>0<><>::uid://c3fqurje6qa76::::res://Tileset.png<>uid://b84ptg7u5c6s0::::res://playercomponent.tscn
+node_2d.tscn::PackedScene::8231427188745000366::1772636857::0::1::::<><><>0<>0<><>::uid://c3fqurje6qa76::::res://Tileset.png<>uid://b84ptg7u5c6s0::::res://playercomponent.tscn<>uid://c8x1picqtxoj3::::res://bw_tiles.png
 Player.tscn::PackedScene::8366641467087018984::1772458803::0::1::::<><><>0<>0<><>::uid://cb2fqkayeyxoh::::res://Scripts/player.gd<>uid://81dbhnweaktq::::res://Spritesheets/Player/Attack-Sheet.png<>uid://w6qojbayyunq::::res://Spritesheets/Player/Squat-Sheet.png<>uid://bhstx1wn1gwjf::::res://Spritesheets/Player/SquatAttack-Sheet.png<>uid://8fqmgv43r882::::res://Spritesheets/Player/Idle-Sheet.png<>uid://dxapxxkny2arn::::res://Spritesheets/Player/Jump-Sheet.png<>uid://rp7pqssxy7xm::::res://Spritesheets/Player/Walk-Sheet.png<>uid://ppnylshi6508::::res://Scripts/gravity.gd<>uid://b77xhxbaea8q6::::res://Scripts/input.gd<>uid://dmrbrudh4jw4h::::res://Scripts/jump.gd<>uid://barg5kiblh703::::res://Scripts/movement.gd<>uid://b0c46hvxnyv36::::res://Scripts/animate.gd
 playercomponent.tscn::PackedScene::4763464529114349033::1772460583::0::1::::<><><>0<>0<><>::uid://dctnlre3yowyd::::res://Scripts/playercomponent.gd<>uid://81dbhnweaktq::::res://Spritesheets/Player/Attack-Sheet.png<>uid://w6qojbayyunq::::res://Spritesheets/Player/Squat-Sheet.png<>uid://bhstx1wn1gwjf::::res://Spritesheets/Player/SquatAttack-Sheet.png<>uid://dxapxxkny2arn::::res://Spritesheets/Player/Jump-Sheet.png<>uid://8fqmgv43r882::::res://Spritesheets/Player/Idle-Sheet.png<>uid://rp7pqssxy7xm::::res://Spritesheets/Player/Walk-Sheet.png<>uid://ppnylshi6508::::res://Scripts/gravity.gd<>uid://b77xhxbaea8q6::::res://Scripts/input.gd<>uid://dmrbrudh4jw4h::::res://Scripts/jump.gd<>uid://barg5kiblh703::::res://Scripts/movement.gd<>uid://b0c46hvxnyv36::::res://Scripts/animate.gd<>uid://bxewaws7hk8m6::::res://Scripts/dash.gd<>uid://bpyydouovoue6::::res://Scripts/attack.gd
 Tileset.png::CompressedTexture2D::6749458972807759375::1770386106::1770386177::1::::<><><>0<>0<>663b48852405d124fedb4c11d5a5fd2a<>res://.godot/imported/Tileset.png-8b57c3b721721080420dc0358d85e828.ctex::
@@ -20,10 +20,11 @@ player.gd::GDScript::4899101094380426431::1772460628::0::1::::<>CharacterBody2D<
 playercomponent.gd::GDScript::7339672780702432123::1772635361::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Spritesheets/::1770816858
 WIP.png::CompressedTexture2D::3999015761857638887::1770403280::1770816858::1::::<><><>0<>0<>86f7d16a449f0ff5cdc0320b9fb0915e<>res://.godot/imported/WIP.png-3157554fbd9098797289220ece8f3afc.ctex::
-::res://Spritesheets/Player/::1772458560
+::res://Spritesheets/Player/::1772639273
 Attack-Sheet.png::CompressedTexture2D::2370089987183672446::1770403279::1770816858::1::::<><><>0<>0<>2ab95f69a2f17ae1cc462922741121ed<>res://.godot/imported/Attack-Sheet.png-92265e00b2aec980185d8c1fe8dc8bf6.ctex::
 Idle-Sheet.png::CompressedTexture2D::2327546979173235497::1770403279::1770816858::1::::<><><>0<>0<>c16cc4624db58f26538dd6a27a4173eb<>res://.godot/imported/Idle-Sheet.png-8f10447aaa3337bcca9e0f3764febf96.ctex::
 Jump-Sheet.png::CompressedTexture2D::8774558507014249415::1770403280::1770816858::1::::<><><>0<>0<>ea7ff2d092e40f09c1cdaf5c069dd16e<>res://.godot/imported/Jump-Sheet.png-93c4f62c7ba0070b5a45571083f690ba.ctex::
+PlayerSprite.png::CompressedTexture2D::767738763515034444::1772639240::1772639278::1::::<><><>0<>0<>bd6c132911e392fc81253d7a1de927bd<>res://.godot/imported/PlayerSprite.png-9ad29e26d241089204b8fd5cd2e91018.ctex::
 Squat-Sheet.png::CompressedTexture2D::1609147217699492122::1770403280::1770816858::1::::<><><>0<>0<>5e41df4c9231396691e021e475fe6030<>res://.godot/imported/Squat-Sheet.png-015036244f4659b937a3e62f1be6c154.ctex::
 SquatAttack-Sheet.png::CompressedTexture2D::2916097485073246847::1770403280::1770816858::1::::<><><>0<>0<>3bff5a4caf715871717b0534cffdcc0a<>res://.godot/imported/SquatAttack-Sheet.png-98df41c5c42d9d81a30a218f239d812d.ctex::
 Walk-Sheet.png::CompressedTexture2D::1226146607864183690::1770403280::1770816858::1::::<><><>0<>0<>32c92226ded6f6180f5fe2a2527c89ce<>res://.godot/imported/Walk-Sheet.png-3f7cb6f99aae99201912d06a1739142a.ctex::
