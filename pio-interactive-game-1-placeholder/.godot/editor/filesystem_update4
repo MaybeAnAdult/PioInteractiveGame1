@@ -1,7 +1,5 @@
-res://playercomponent.tscn
-res://node_2d.tscn
-res://dash.gd
-res://Scripts/old_dash.gd
 res://Scripts/dash.gd
-res://Scripts/animate.gd
-res://Scripts/player.gd
+res://Scripts/gravity.gd
+res://Scripts/playercomponent.gd
+res://node_2d.tscn
+res://Scripts/movement.gd

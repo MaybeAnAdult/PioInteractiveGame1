@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 @export_subgroup("Nodes")
 @export var input_component: InputComponent
 @export var gravity_component: GravityComponent
@@ -9,10 +8,14 @@ extends CharacterBody2D
 @export var dash_component: DashComponent
 @export var attack_component: AttackComponent
 
+@export var can_move = true
+
+
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
-	movement_component.handle_horizontal_movement(self, input_component.get_horizontal())
-	jump_component.handle_jump(self, input_component.get_jump_input(), delta)
+	if can_move:
+		movement_component.handle_horizontal_movement(self, input_component.get_horizontal())
+		jump_component.handle_jump(self, input_component.get_jump_input(), delta)
 ##	attack_component.handle_attack(CharacterBody2D, want_to_attack, delta)
 # Get dash input and direction
 	var want_dash = input_component.get_dash_input()
@@ -26,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	animation_component.update_animation(
 		input_component.get_horizontal(),
 		jump_component.is_jumping,
-		gravity_component.in_air
+		gravity_component.is_falling
 	)
 	
 	move_and_slide()
