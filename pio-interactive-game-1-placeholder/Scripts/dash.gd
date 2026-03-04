@@ -1,7 +1,7 @@
 class_name DashComponent
 extends Node
 
-@export var dash_distance: float = 600
+@export var dash_distance: float = 700
 @export var max_dashes: int = 1
 @export var dash_cooldown: float = 0.5  # Seconds before you can dash again
 @export var dash_time: float = 0.01
