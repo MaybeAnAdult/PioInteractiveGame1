@@ -20,6 +20,9 @@ func _physics_process(delta: float) -> void:
 	var dash_direction = Vector2(input_component.get_horizontal(), input_component.get_vertical())
 	dash_component.handle_dash(self, want_dash, dash_direction, $AnimatedSprite2D, delta)
 	
+	if dash_component.is_dashing:
+		$AnimatedSprite2D.play("dash")
+	
 # Reset dashes when on ground
 	if is_on_floor():
 		dash_component.reset_dashes()
