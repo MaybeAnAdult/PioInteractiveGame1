@@ -312,7 +312,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack3",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -361,7 +361,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tq12s")
 }],
-"loop": true,
+"loop": false,
 "name": &"dash",
 "speed": 5.0
 }, {
@@ -504,7 +504,7 @@ attack_component = NodePath("attack")
 
 [node name="AttackHitbox" type="Area2D" parent="Player" unique_id=1638717220]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackHitbox" unique_id=1505766950]
+[node name="hitboxshape" type="CollisionShape2D" parent="Player/AttackHitbox" unique_id=1505766950]
 z_index = 1
 position = Vector2(17.25, 2)
 shape = SubResource("RectangleShape2D_esyyk")
@@ -515,11 +515,17 @@ shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"dash"
+animation = &"attack2"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_kne1u")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
+position = Vector2(15, 21)
+limit_left = -10000002
+limit_smoothed = true
 
 [node name="gravity" type="Node" parent="Player" unique_id=259109108]
 script = ExtResource("8_uylte")
@@ -533,19 +539,17 @@ script = ExtResource("10_mr4rg")
 [node name="movement" type="Node" parent="Player" unique_id=1167663895]
 script = ExtResource("11_sb71o")
 
-[node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite")]
+[node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite", "dash_component")]
 script = ExtResource("12_1v1y8")
 sprite = NodePath("../AnimatedSprite2D")
+dash_component = NodePath("../dash")
 
 [node name="dash" type="Node" parent="Player" unique_id=1417286952]
 script = ExtResource("13_tfb15")
 
-[node name="attack" type="Node" parent="Player" unique_id=1741045720]
+[node name="attack" type="Node" parent="Player" unique_id=1741045720 node_paths=PackedStringArray("hitbox_node", "attack_hitbox")]
 script = ExtResource("14_dinke")
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
-position = Vector2(15, 21)
-limit_left = -10000002
-limit_smoothed = true
+hitbox_node = NodePath("../AttackHitbox")
+attack_hitbox = NodePath("../AttackHitbox")
 
 [connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player" method="_on_animated_sprite_2d_animation_finished"]

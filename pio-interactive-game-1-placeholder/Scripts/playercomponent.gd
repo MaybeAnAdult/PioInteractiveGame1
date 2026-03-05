@@ -14,6 +14,9 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, input_component.get_horizontal())
 	jump_component.handle_jump(self, input_component.get_jump_input(), delta)
+	# Variable jump height (release jump early = shorter jump)
+	if Input.is_action_just_released("jump") and jump_component.is_jumping:
+		velocity.y *= 0.5  # Cut ascent (tune 0.4–0.6)
 	attack_component.handle_attack(input_component.get_attack_input(), delta)
 # Get dash input and direction
 	var want_dash = input_component.get_dash_input()
