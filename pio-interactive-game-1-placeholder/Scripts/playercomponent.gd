@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, input_component.get_horizontal())
 	jump_component.handle_jump(self, input_component.get_jump_input(), delta)
-##	attack_component.handle_attack(CharacterBody2D, want_to_attack, delta)
+	attack_component.handle_attack(input_component.get_attack_input(), delta)
 # Get dash input and direction
 	var want_dash = input_component.get_dash_input()
 	var dash_direction = Vector2(input_component.get_horizontal(), input_component.get_vertical())

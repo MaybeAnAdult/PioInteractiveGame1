@@ -10,8 +10,11 @@
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
 [ext_resource type="Script" uid="uid://bpyydouovoue6" path="res://Scripts/attack.gd" id="14_dinke"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esyyk"]
+size = Vector2(20.5, 34)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
-size = Vector2(9.90625, 16)
+size = Vector2(13.953125, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mihv"]
 atlas = ExtResource("2_twkuv")
@@ -269,7 +272,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -287,9 +290,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mr4rg")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -307,9 +310,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_afkwn")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack3",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -489,7 +492,7 @@ _data = {
 
 [node name="Player" type="Node2D" unique_id=777074863]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1288801772 node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "jump_component", "animation_component", "dash_component")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1288801772 node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "jump_component", "animation_component", "dash_component", "attack_component")]
 script = ExtResource("1_7mihv")
 input_component = NodePath("input")
 gravity_component = NodePath("gravity")
@@ -497,17 +500,22 @@ movement_component = NodePath("movement")
 jump_component = NodePath("jump")
 animation_component = NodePath("animate")
 dash_component = NodePath("dash")
+attack_component = NodePath("attack")
+
+[node name="AttackHitbox" type="Area2D" parent="Player" unique_id=1638717220]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackHitbox" unique_id=1505766950]
+z_index = 1
+position = Vector2(17.25, 2)
+shape = SubResource("RectangleShape2D_esyyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1047164644]
-position = Vector2(0.046875, 2)
+position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
-position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"walk"
-frame = 1
-frame_progress = 0.4262583
+animation = &"attack3"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
@@ -536,6 +544,7 @@ script = ExtResource("13_tfb15")
 script = ExtResource("14_dinke")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
+position = Vector2(15, 21)
 limit_left = -10000002
 limit_smoothed = true
 
