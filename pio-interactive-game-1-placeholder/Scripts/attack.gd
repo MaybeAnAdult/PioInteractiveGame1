@@ -4,13 +4,14 @@ extends Node
 @export_group("Combo Settings")
 @export var combo_reset_time: float = 1.2
 @export var combo_buffer_time: float = 0.15
-@export var attack_cooldown: float = 0.2
+@export var attack_cooldown: float = 0
 @export var hitbox_node: Area2D
 @export_group("Hitbox")
 @export var attack_hitbox: Area2D              # Drag AttackHitbox here!
 @export var damage_amount: int = 25            # Damage per hit
 @export var knockback_force: float = 400.0     # Push enemies away
 @export var hitstop_duration: float = 0.08     # Screen freeze on hit (metroidvania polish)
+@export var cancel_frame: int = 2
 
 var current_combo: int = 0
 var last_attack_time: float = 0.0
@@ -42,14 +43,25 @@ func handle_attack(want_to_attack: bool, delta: float) -> void:
 		combo_buffer_timer = 0.0
 		_deactivate_hitbox()  # Clean up
 
-	if want_to_attack:
-		if is_attacking and current_combo < 3:
-			next_attack_queued = true
-		elif combo_buffer_timer > 0 and current_combo < 3:
-			start_attack(current_combo + 1)
+	if want_to_attack and sprite.frame > cancel_frame:
+		if (current_combo):
+			
+			sprite.stop()
+			start_attack(2)
 			combo_buffer_timer = 0.0
-		elif not is_attacking and last_attack_time >= attack_cooldown:
+			current_combo = 0
+		else:
+			sprite.stop()
 			start_attack(1)
+	elif want_to_attack:
+		start_attack(1)
+		#elif is_attacking and current_combo < 2:
+		#	next_attack_queued = true
+		#	print("queue next attack")
+		#	print(combo_buffer_timer)
+		#elif not is_attacking and last_attack_time >= attack_cooldown:
+		#	start_attack(1)
+		#	print("start new combo")
 
 func start_attack(combo_level: int) -> void:
 	current_combo = combo_level
