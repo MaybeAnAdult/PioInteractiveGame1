@@ -761,9 +761,8 @@ frame_progress = 1.0
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_kne1u")
 
-[node name="gravity" type="Node" parent="Player" unique_id=259109108 node_paths=PackedStringArray("dash_component")]
+[node name="gravity" type="Node" parent="Player" unique_id=259109108]
 script = ExtResource("8_uylte")
-dash_component = NodePath("../dash")
 
 [node name="input" type="Node" parent="Player" unique_id=320302200]
 script = ExtResource("9_3sma5")

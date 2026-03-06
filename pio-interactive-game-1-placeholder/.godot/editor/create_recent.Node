@@ -1,3 +1,5 @@
+res://addons/trail_2d/trail_2d.gd
+Sprite2D
 Node2D
 GPUParticles2D
 CollisionShape2D

@@ -3,6 +3,7 @@ extends Node
 
 @export_subgroup("Dash Settings")
 @export var dash_distance: float = 700.0
+@export var velocity_kept: float = 0.25 # % of velocity kept after dashing
 @export var dash_speed_horizontal: float = 700
 @export var dash_speed_vertical: float = 600.0
 @export var max_dashes: int = 1
@@ -19,7 +20,7 @@ var dashes_available: int = 1
 var cooldown_timer: float = 0.0
 var dash_duration_timer: float = 0.0
 var afterimage_timer: float = 0.0
-var is_dashing: bool = false
+@export var is_dashing: bool = false
 
 @onready var sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
 
@@ -46,6 +47,7 @@ func handle_dash(body: CharacterBody2D, want_to_dash: bool, direction: Vector2, 
 		# End dash
 		if dash_duration_timer <= 0:
 			is_dashing = false
+			body.velocity = body.velocity*velocity_kept
 			afterimage_timer = 0.0  # stop spawning
 		
 		return  # Ignore input during dash

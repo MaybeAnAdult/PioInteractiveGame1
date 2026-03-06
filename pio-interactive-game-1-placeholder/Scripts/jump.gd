@@ -6,7 +6,7 @@ extends Node
 @export var jump_buffer_time: float = 0.1
 @export var coyote_time: float = 0.1
 @export var double_jump_grace_time: float = 0.2  # Brief window after first jump to double
-@export var max_jumps: int = 2                  # 1 = normal, 2 = double jump
+@export var max_jumps: int = 50                  # 1 = normal, 2 = double jump
 
 @export_subgroup("Polish")
 @export var double_jump_particles: GPUParticles2D  # Drag particles node here (optional)

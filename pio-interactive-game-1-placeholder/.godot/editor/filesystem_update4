@@ -4,3 +4,7 @@ res://Scripts/playercomponent.gd
 res://Scripts/movement.gd
 res://Scripts/dash.gd
 res://Scripts/attack.gd
+res://Scripts/jump.gd
+res://camera_target.gd
+res://Scripts/camera_2d.gd
+res://Scripts/gravity.gd
