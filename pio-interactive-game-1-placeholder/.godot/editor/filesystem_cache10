@@ -40,8 +40,8 @@ Background_Wall.png::CompressedTexture2D::2348166177182925179::1772805992::17728
 Fog.png::CompressedTexture2D::8876603634667838819::1772805992::1772807411::1::::<><><>0<>0<>d95de4f71b2afaa6591d34e6dcc24b36<>res://.godot/imported/Fog.png-af835e75f8a273d7e7f7fee33f0378a1.ctex::
 Fog_Top.png::CompressedTexture2D::8908072568519553423::1772805992::1772807411::1::::<><><>0<>0<>506d7e5f04d96077bb8dfbcc601ea2f9<>res://.godot/imported/Fog_Top.png-fabb9f5c313aca9864ba5460d49c5842.ctex::
 Walls.png::CompressedTexture2D::6707170851786588235::1772805992::1772807411::1::::<><><>0<>0<>2cf812d1b276a473fc9563cc134041e7<>res://.godot/imported/Walls.png-a994f672d582c49f2fca2c05a59edef2.ctex::
-::res://Spritesheets/Player/::1772821853
-playersprite.png::CompressedTexture2D::3264060112220745637::1772831400::1772831406::1::::<><><>0<>0<>d55cb7be468e8bfb605160dbe073561d<>res://.godot/imported/playersprite.png-3198a615f7111d42b37b0c8081a597c5.ctex::
+::res://Spritesheets/Player/::1772831499
+playersprite.png::CompressedTexture2D::3264060112220745637::1772831606::1772831608::1::::<><><>0<>0<>d55cb7be468e8bfb605160dbe073561d<>res://.godot/imported/playersprite.png-3198a615f7111d42b37b0c8081a597c5.ctex::
 ::res://Spritesheets/Player/Light/::1772807410
 idle.png::CompressedTexture2D::5874129368664648366::1772805992::1772807410::1::::<><><>0<>0<>0783143501b753a1da2645c5f88ab053<>res://.godot/imported/idle.png-bda069d0ecb7351efd2f25d2221e1ea6.ctex::
 nocape1.png::CompressedTexture2D::8617232983489669121::1772805992::1772807409::1::::<><><>0<>0<>f4efbadd8f0172f499c71d487185dc31<>res://.godot/imported/nocape1.png-127d86683312dbb46d4c381deaeedeaf.ctex::

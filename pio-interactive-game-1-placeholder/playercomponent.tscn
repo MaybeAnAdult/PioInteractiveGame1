@@ -369,19 +369,31 @@ region = Rect2(675, 352, 75, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fs2s"]
 atlas = ExtResource("2_esyyk")
-region = Rect2(300, 440, 75, 88)
+region = Rect2(900, 616, 75, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wawma"]
 atlas = ExtResource("2_esyyk")
-region = Rect2(375, 440, 75, 88)
+region = Rect2(825, 616, 75, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lngpx"]
 atlas = ExtResource("2_esyyk")
-region = Rect2(450, 440, 75, 88)
+region = Rect2(750, 616, 75, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0ffe"]
 atlas = ExtResource("2_esyyk")
-region = Rect2(525, 440, 75, 88)
+region = Rect2(675, 616, 75, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh4kl"]
+atlas = ExtResource("2_esyyk")
+region = Rect2(600, 616, 75, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76mil"]
+atlas = ExtResource("2_esyyk")
+region = Rect2(525, 616, 75, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khah1"]
+atlas = ExtResource("2_esyyk")
+region = Rect2(450, 616, 75, 88)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wi0c6"]
 animations = [{
@@ -713,6 +725,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x0ffe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh4kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76mil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khah1")
 }],
 "loop": true,
 "name": &"wall_cling",
@@ -753,9 +774,7 @@ shape = SubResource("RectangleShape2D_kpjcp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 position = Vector2(-2, -17)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"attack2"
-frame = 15
-frame_progress = 1.0
+animation = &"attack3"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
@@ -804,6 +823,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("11_twkuv")
 
 [node name="Trail2D" type="Line2D" parent="Player" unique_id=731634457]
+visible = false
 width = 2.0
 default_color = Color(1, 0, 1, 1)
 script = ExtResource("12_7mihv")
