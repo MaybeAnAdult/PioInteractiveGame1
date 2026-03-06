@@ -14,7 +14,7 @@
 size = Vector2(20.5, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
-size = Vector2(13.953125, 21)
+size = Vector2(13.953125, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mihv"]
 atlas = ExtResource("2_twkuv")
@@ -510,13 +510,12 @@ position = Vector2(17.25, 2)
 shape = SubResource("RectangleShape2D_esyyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1047164644]
-position = Vector2(0, 5.5)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"attack2"
-frame = 1
+animation = &"crouch_attack"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
@@ -536,13 +535,15 @@ script = ExtResource("9_3sma5")
 [node name="jump" type="Node" parent="Player" unique_id=1055137108]
 script = ExtResource("10_mr4rg")
 
-[node name="movement" type="Node" parent="Player" unique_id=1167663895]
+[node name="movement" type="Node" parent="Player" unique_id=1167663895 node_paths=PackedStringArray("dash_component")]
 script = ExtResource("11_sb71o")
+dash_component = NodePath("../dash")
 
-[node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite", "dash_component")]
+[node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite", "dash_component", "attack_component")]
 script = ExtResource("12_1v1y8")
 sprite = NodePath("../AnimatedSprite2D")
 dash_component = NodePath("../dash")
+attack_component = NodePath("../attack")
 
 [node name="dash" type="Node" parent="Player" unique_id=1417286952]
 script = ExtResource("13_tfb15")

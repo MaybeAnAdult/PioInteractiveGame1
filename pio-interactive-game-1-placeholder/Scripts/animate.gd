@@ -5,6 +5,9 @@ extends Node
 @export var sprite: AnimatedSprite2D
 @export_subgroup("Dash Reference")  #drag Dash node here for clean access
 @export var dash_component: DashComponent
+@export_subgroup("Attack Reference")  # Add this line + drag AttackComponent
+@export var attack_component: AttackComponent
+
 
 func handle_horizontal_flip(move_direction: float) -> void:
 	if move_direction > 0:
@@ -14,9 +17,12 @@ func handle_horizontal_flip(move_direction: float) -> void:
 
 
 func update_animation(move_direction: float, is_jumping: bool, is_falling: bool):
-	# Always flip based on direction (even during attacks)
-	handle_horizontal_flip(move_direction)
+
 	
+	# Flip ONLY if NOT dashing/attacking (NO TURNING during attack!)
+	if not (dash_component and dash_component.is_currently_dashing()) \
+		and not (attack_component and attack_component.is_attacking()):
+		handle_horizontal_flip(move_direction)
 # HIGHEST PRIORITY: Dash (new!)
 	if dash_component and dash_component.is_currently_dashing():
 		if sprite.animation != "dash":

@@ -20,6 +20,12 @@ var hit_objects: Array[Node2D] = []            # Track hit enemies (no double-hi
 
 @onready var sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
 
+func is_attacking() -> bool:
+	if not sprite or not sprite.is_playing():
+		return false
+	var anim = sprite.animation
+	return anim in ["attack1", "attack2", "attack3", "crouch_attack"]
+
 func _ready():
 	sprite.animation_finished.connect(_on_animation_finished)
 	if attack_hitbox:
