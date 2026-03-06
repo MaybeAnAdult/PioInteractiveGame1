@@ -3,11 +3,11 @@ extends Node
 
 @export_subgroup("Dash Settings")
 @export var dash_distance: float = 700.0
-@export var dash_speed_horizontal: float = 700.0
+@export var dash_speed_horizontal: float = 700
 @export var dash_speed_vertical: float = 600.0
 @export var max_dashes: int = 1
 @export var dash_duration: float = 0.15
-@export var dash_cooldown: float = 0.6
+@export var dash_cooldown: float = 0.3
 @export var disable_gravity_during_dash: bool = true
 
 @export_subgroup("Afterimage Settings")
@@ -88,9 +88,10 @@ func _spawn_afterimage() -> void:
 	ghost.frame = sprite.frame
 	ghost.flip_h = sprite.flip_h
 	ghost.flip_v = sprite.flip_v
+	ghost.global_position = sprite.global_position
 	
-	# Spawn as child of the AnimatedSprite2D → perfect local alignment, no offset
-	sprite.add_child(ghost)
+	#d Spawn as child of the AnimatedSprite2D → perfect local alignment, no offset
+	add_child(ghost)
 	
 	# Optional: tiny random offset for more organic look (comment out if you want perfect overlap)
 	# ghost.position += Vector2(randf_range(-3, 3), randf_range(-3, 3))

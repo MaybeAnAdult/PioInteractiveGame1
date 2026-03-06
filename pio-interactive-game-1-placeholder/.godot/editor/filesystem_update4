@@ -1,1 +1,5 @@
 res://playercomponent.tscn
+res://Scripts/animate.gd
+res://Scripts/playercomponent.gd
+res://Scripts/movement.gd
+res://Scripts/dash.gd

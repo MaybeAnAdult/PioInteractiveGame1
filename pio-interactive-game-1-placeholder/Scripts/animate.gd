@@ -16,7 +16,7 @@ func handle_horizontal_flip(move_direction: float) -> void:
 		sprite.flip_h = true
 
 
-func update_animation(move_direction: float, is_jumping: bool, is_falling: bool):
+func update_animation(move_direction: float, is_jumping: bool, is_falling: bool, horiz_velocity: float):
 
 	
 	# Flip ONLY if NOT dashing/attacking (NO TURNING during attack!)
@@ -51,6 +51,6 @@ func update_animation(move_direction: float, is_jumping: bool, is_falling: bool)
 
 	# Ground movement
 	if move_direction != 0:
-		sprite.play("walk")
+		sprite.play("walk",log(abs(horiz_velocity)/60))
 	else:
 		sprite.play("idle")

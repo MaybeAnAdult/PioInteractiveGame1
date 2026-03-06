@@ -33,7 +33,8 @@ func _physics_process(delta: float) -> void:
 	animation_component.update_animation(
 		input_component.get_horizontal(),
 		jump_component.is_jumping,
-		gravity_component.is_falling
+		gravity_component.is_falling,
+		self.velocity.x
 	)
 	
 	move_and_slide()
