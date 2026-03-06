@@ -802,7 +802,9 @@ attack_component = NodePath("../attack")
 
 [node name="dash" type="Node" parent="Player" unique_id=1417286952]
 script = ExtResource("13_tfb15")
-max_dashes = 6
+velocity_kept = 0.5
+max_dashes = 2000
+dash_cooldown = 0.0
 afterimage_interval = 0.04
 afterimage_opacity = 1.0
 
@@ -814,16 +816,15 @@ attack_hitbox = NodePath("../AttackHitbox")
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
 position = Vector2(1, 7)
 limit_smoothed = true
-position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = ExtResource("10_ipct0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D" unique_id=1997342320]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("11_twkuv")
 
 [node name="Trail2D" type="Line2D" parent="Player" unique_id=731634457]
-visible = false
 width = 2.0
 default_color = Color(1, 0, 1, 1)
 script = ExtResource("12_7mihv")
