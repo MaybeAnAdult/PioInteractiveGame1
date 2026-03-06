@@ -1,6 +1,1 @@
 res://playercomponent.tscn
-res://Scripts/movement.gd
-res://Scripts/gravity.gd
-res://Scripts/dash.gd
-res://Scripts/attack.gd
-res://Scripts/animate.gd
