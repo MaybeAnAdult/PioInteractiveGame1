@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://barg5kiblh703" path="res://Scripts/movement.gd" id="11_sb71o"]
 [ext_resource type="Script" uid="uid://b0c46hvxnyv36" path="res://Scripts/animate.gd" id="12_1v1y8"]
 [ext_resource type="Script" uid="uid://dx3fv7uvu3o0" path="res://trail_2d.gd" id="12_7mihv"]
+[ext_resource type="Shader" uid="uid://b6rk86cc54t14" path="res://Vignette.gdshader" id="12_tfb15"]
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
 [ext_resource type="Script" uid="uid://bpyydouovoue6" path="res://Scripts/attack.gd" id="14_dinke"]
 
@@ -884,9 +885,17 @@ _data = {
 &"Walk": SubResource("Animation_kpjcp")
 }
 
-[node name="Player" type="Node2D" unique_id=777074863]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dinke"]
+shader = ExtResource("12_tfb15")
+shader_parameter/inner_radius = 0.1
+shader_parameter/outer_radius = 0.5
+shader_parameter/vignette_strength = 1.0
+shader_parameter/dither_strength = 0.03
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1288801772 node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "jump_component", "animation_component", "dash_component", "attack_component")]
+[node name="Player" type="Node2D" unique_id=777074863 groups=["Player"]]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1288801772 node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "jump_component", "animation_component", "dash_component", "attack_component") groups=["Player"]]
 position = Vector2(0, -7)
 script = ExtResource("1_7mihv")
 input_component = NodePath("input")
@@ -935,6 +944,7 @@ script = ExtResource("11_sb71o")
 attack_component = NodePath("../attack")
 dash_component = NodePath("../dash")
 player_camera = NodePath("../Camera2D")
+friction = 0.5
 
 [node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite", "dash_component", "attack_component", "move_component")]
 script = ExtResource("12_1v1y8")
@@ -966,7 +976,24 @@ position_smoothing_speed = 15.0
 script = ExtResource("10_ipct0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D" unique_id=1997342320]
+visible = false
 texture = ExtResource("11_7mihv")
+
+[node name="Vignette" type="ColorRect" parent="Player/Camera2D" unique_id=1710180601]
+z_index = 10
+material = SubResource("ShaderMaterial_dinke")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 360)
 
 [node name="Trail2D" type="Line2D" parent="Player" unique_id=731634457]
 visible = false

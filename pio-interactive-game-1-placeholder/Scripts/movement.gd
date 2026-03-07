@@ -11,9 +11,9 @@ var is_crouching: bool = false
 @export var player_camera: PlayerCameraComponent
 
 @export_subgroup("Settings")
-@export var speed: float = 400
-@export var acceleration := 0.02
-@export var friction := 0.9
+@export var speed: float = 250
+@export var acceleration := 0.1
+@export var friction := 0.99
 
 @export_subgroup("Crouch Settings")
 @export var time_until_pan: float = 1
@@ -71,7 +71,7 @@ func handle_horizontal_movement(body: CharacterBody2D, direction: float, delta) 
 		_apply_friction(body, friction, delta)
 			
 	if abs(body.velocity.x) > speed:
-		_apply_friction(body, friction, delta)
+		body.velocity.x = speed * sign(direction)
 		
 func _apply_friction(body, applied_friction, delta) -> void:
 	var tps = Engine.physics_ticks_per_second

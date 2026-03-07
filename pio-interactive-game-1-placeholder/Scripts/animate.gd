@@ -30,7 +30,7 @@ func update_animation(move_direction: float, is_jumping: bool, is_falling: bool,
 	if dash_component and dash_component.is_currently_dashing():
 		if velocity[1] != 0 and velocity[0] != 0:
 			sprite.rotation = deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90))
-			print(deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90)))
+		#	print(deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90)))
 		sprite.play("dash")
 		return
 	

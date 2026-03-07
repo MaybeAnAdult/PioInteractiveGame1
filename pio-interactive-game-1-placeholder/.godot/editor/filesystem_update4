@@ -1,3 +1,10 @@
 res://playercomponent.tscn
 res://Scripts/camera_2d.gd
 res://Scripts/movement.gd
+res://new_movement.gd
+res://node_2d.tscn
+res://reset_to_spawn.gd
+res://Scripts/animate.gd
+res://floor_boundary.tscn
+res://Scripts/boundary_reset_position.gd
+res://Vignette.gdshader
