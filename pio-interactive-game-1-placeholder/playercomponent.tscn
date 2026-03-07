@@ -743,7 +743,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -920,8 +920,8 @@ shape = SubResource("RectangleShape2D_kpjcp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"crouch"
-frame = 8
+animation = &"dash"
+frame = 3
 frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
@@ -961,6 +961,7 @@ velocity_kept = 0.5
 max_dashes = 2000
 dash_cooldown = 0.0
 afterimage_interval = 0.04
+afterimage_fade_time = 0.15
 afterimage_opacity = 1.0
 
 [node name="attack" type="Node" parent="Player" unique_id=1741045720 node_paths=PackedStringArray("movement_component", "hitbox_node", "attack_hitbox")]
