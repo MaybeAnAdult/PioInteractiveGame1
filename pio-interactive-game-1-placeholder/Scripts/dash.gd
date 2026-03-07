@@ -1,5 +1,7 @@
 class_name DashComponent
 extends Node
+@export var movement_component: MovementComponent
+@export var animation_component: AnimationComponent
 
 @export_subgroup("Dash Settings")
 @export var dash_distance: float = 700.0
@@ -49,11 +51,12 @@ func handle_dash(body: CharacterBody2D, want_to_dash: bool, direction: Vector2, 
 			is_dashing = false
 			body.velocity = body.velocity*velocity_kept
 			afterimage_timer = 0.0  # stop spawning
+			animation_component.reset_rotation()
 		
 		return  # Ignore input during dash
 	
 	# Start new dash
-	if want_to_dash and cooldown_timer <= 0 and dashes_available > 0:
+	if want_to_dash and cooldown_timer <= 0 and dashes_available > 0 and movement_component.can_move:
 		var dash_dir := direction
 		
 		# Default to facing direction if no input
@@ -90,6 +93,7 @@ func _spawn_afterimage() -> void:
 	ghost.frame = sprite.frame
 	ghost.flip_h = sprite.flip_h
 	ghost.flip_v = sprite.flip_v
+	ghost.rotation = sprite.rotation
 	ghost.global_position = sprite.global_position
 	
 	#d Spawn as child of the AnimatedSprite2D → perfect local alignment, no offset

@@ -12,7 +12,7 @@ extends CharacterBody2D
 
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
-	movement_component.handle_horizontal_movement(self, input_component.get_horizontal())
+	movement_component.handle_horizontal_movement(self, input_component.get_horizontal(), delta)
 	jump_component.handle_jump(self, input_component.get_jump_input(), delta)
 	# Variable jump height (release jump early = shorter jump)
 	if Input.is_action_just_released("jump") and jump_component.is_jumping:
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		input_component.get_horizontal(),
 		jump_component.is_jumping,
 		gravity_component.is_falling,
-		self.velocity.x
+		self.velocity
 	)
 	
 	move_and_slide()

@@ -3,10 +3,10 @@ extends Node
 
 @export_subgroup("Nodes")
 @export var sprite: AnimatedSprite2D
-@export_subgroup("Dash Reference")  #drag Dash node here for clean access
+@export_subgroup("References")  #drag Dash node here for clean access
 @export var dash_component: DashComponent
-@export_subgroup("Attack Reference")  # Add this line + drag AttackComponent
 @export var attack_component: AttackComponent
+@export var move_component: MovementComponent
 
 
 func handle_horizontal_flip(move_direction: float) -> void:
@@ -15,18 +15,23 @@ func handle_horizontal_flip(move_direction: float) -> void:
 	elif move_direction < 0:
 		sprite.flip_h = true
 
+func reset_rotation() -> void:
+	sprite.rotation = 0
 
-func update_animation(move_direction: float, is_jumping: bool, is_falling: bool, horiz_velocity: float):
+func update_animation(move_direction: float, is_jumping: bool, is_falling: bool, velocity: Vector2):
 
 	
 	# Flip ONLY if NOT dashing/attacking (NO TURNING during attack!)
 	if not (dash_component and dash_component.is_currently_dashing()) \
 		and not (attack_component and attack_component.is_attacking()):
 		handle_horizontal_flip(move_direction)
+		
 # HIGHEST PRIORITY: Dash (new!)
 	if dash_component and dash_component.is_currently_dashing():
-		if sprite.animation != "dash":
-			sprite.play("dash")
+		if velocity[1] != 0 and velocity[0] != 0:
+			sprite.rotation = deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90))
+			print(deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90)))
+		sprite.play("dash")
 		return
 	
 	# HIGH PRIORITY: Attacks (don't interrupt)
@@ -44,13 +49,17 @@ func update_animation(move_direction: float, is_jumping: bool, is_falling: bool,
 		return
 	
 	# Crouch (ground + down input)
-	var is_crouching = Input.is_action_pressed("move_down") and get_parent().is_on_floor()
-	if is_crouching:
+	
+	if move_component.is_crouching and sprite.animation != "crouch":
 		sprite.play("crouch")
 		return
+	if move_component.is_crouching:
+		return
+	if !move_component.is_crouching and sprite.animation == "crouch":
+		sprite.play("crouch->idle")
 
 	# Ground movement
 	if move_direction != 0:
-		sprite.play("walk",log(abs(horiz_velocity)/60))
-	else:
+		sprite.play("walk",log(abs(velocity[0])/60))
+	elif sprite.animation:
 		sprite.play("idle")

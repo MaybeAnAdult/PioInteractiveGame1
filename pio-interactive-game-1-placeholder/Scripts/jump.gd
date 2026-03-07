@@ -1,5 +1,6 @@
 class_name JumpComponent
 extends Node
+@export var movement_component: MovementComponent
 
 @export_subgroup("Jump Settings")
 @export var jump_velocity: float = -350.0
@@ -11,6 +12,8 @@ extends Node
 @export_subgroup("Polish")
 @export var double_jump_particles: GPUParticles2D  # Drag particles node here (optional)
 @export var double_jump_sfx: AudioStreamPlayer2D   # Higher pitch SFX (optional)
+
+
 
 var jump_buffer_counter: float = 0.0
 var coyote_timer: float = 0.0
@@ -37,20 +40,21 @@ func handle_jump(body: CharacterBody2D, want_to_jump: bool, delta: float) -> voi
 		double_jump_grace_timer -= delta
 	
 	# Perform jump
-	var can_jump = jump_buffer_counter > 0 and (coyote_timer > 0 or jumps_used < max_jumps)
-	if can_jump:
-		body.velocity.y = jump_velocity
-		jump_buffer_counter = 0
-		coyote_timer = 0
-		jumps_used += 1
-		
-		# Double jump SFX/polish (only if not first jump)
-		if jumps_used > 1:
-			_play_double_jump_fx()
-		
-		# Grace timer for smooth double jump timing
-		if jumps_used == 1:
-			double_jump_grace_timer = double_jump_grace_time
+	if movement_component.can_move:
+		var can_jump = jump_buffer_counter > 0 and (coyote_timer > 0 or jumps_used < max_jumps)
+		if can_jump:
+			body.velocity.y = jump_velocity
+			jump_buffer_counter = 0
+			coyote_timer = 0
+			jumps_used += 1
+			
+			# Double jump SFX/polish (only if not first jump)
+			if jumps_used > 1:
+				_play_double_jump_fx()
+			
+			# Grace timer for smooth double jump timing
+			if jumps_used == 1:
+				double_jump_grace_timer = double_jump_grace_time
 
 	is_jumping = body.velocity.y < 0 and not body.is_on_floor()
 

@@ -1,10 +1,7 @@
 res://playercomponent.tscn
-res://Scripts/animate.gd
-res://Scripts/playercomponent.gd
 res://Scripts/movement.gd
+res://Scripts/jump.gd
 res://Scripts/dash.gd
 res://Scripts/attack.gd
-res://Scripts/jump.gd
-res://camera_target.gd
-res://Scripts/camera_2d.gd
-res://Scripts/gravity.gd
+res://Scripts/playercomponent.gd
+res://Scripts/animate.gd

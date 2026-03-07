@@ -1,17 +1,20 @@
 class_name AttackComponent
 extends Node
+@export var movement_component: MovementComponent
 
 @export_group("Combo Settings")
 @export var combo_reset_time: float = 1.2
 @export var combo_buffer_time: float = 0.15
 @export var attack_cooldown: float = 0
 @export var hitbox_node: Area2D
+@export var cancel_frame: int = 2 #frame you can cancel into a follow up attack
+@export var fin_frame: int = 4 #frame you can cancel into non-attacks
+
 @export_group("Hitbox")
 @export var attack_hitbox: Area2D              # Drag AttackHitbox here!
 @export var damage_amount: int = 25            # Damage per hit
 @export var knockback_force: float = 400.0     # Push enemies away
 @export var hitstop_duration: float = 0.08     # Screen freeze on hit (metroidvania polish)
-@export var cancel_frame: int = 2
 
 var current_combo: int = 0
 var last_attack_time: float = 0.0
@@ -43,7 +46,7 @@ func handle_attack(want_to_attack: bool, delta: float) -> void:
 		combo_buffer_timer = 0.0
 		_deactivate_hitbox()  # Clean up
 
-	if want_to_attack and sprite.frame > cancel_frame:
+	if want_to_attack and attack_cancel_test(false):
 		if (current_combo):
 			
 			sprite.stop()
@@ -65,12 +68,19 @@ func handle_attack(want_to_attack: bool, delta: float) -> void:
 
 func start_attack(combo_level: int) -> void:
 	current_combo = combo_level
+	movement_component.can_move = false
+	print(movement_component.can_move)
 	var anim_name = "attack" + str(combo_level)
 	sprite.play(anim_name)
 	last_attack_time = 0.0
 	combo_buffer_timer = 0.0
 	hit_objects.clear()  # Reset hits for this attack
 	_activate_hitbox()   # Enable hitbox
+
+func stop_attack() -> void:
+	current_combo = 0
+	sprite.stop()
+	_on_animation_finished()
 
 func _activate_hitbox() -> void:
 	if attack_hitbox:
@@ -111,3 +121,9 @@ func _apply_hitstop(duration: float) -> void:
 	var tween = create_tween()
 	tween.tween_property(Engine, "time_scale", 0.01, 0.01)  # Instant freeze
 	tween.tween_property(Engine, "time_scale", 1.0, duration - 0.01)
+
+func attack_cancel_test(fin):
+	if fin:
+		return sprite.frame > fin_frame
+	else:
+		return sprite.frame > cancel_frame
