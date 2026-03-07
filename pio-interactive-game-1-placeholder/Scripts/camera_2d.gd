@@ -1,8 +1,11 @@
+class_name PlayerCameraComponent
 extends Camera2D
   
 @onready var player = get_parent()
 @export var camera_target_speed: float = 3
 @export var max_camera_offset : float = 100
+@export var camera_offset : Vector2 = Vector2.ZERO
+
 var camera_speed : int = 15
 
 func _process(delta: float) -> void:
@@ -11,5 +14,5 @@ func _process(delta: float) -> void:
 	var target_offset = Vector2(target_x, target_y)
 	#print(target_offset)
 	#print(position_smoothing_speed)
-	position = position.lerp(target_offset, delta * camera_target_speed)
+	position = position.lerp(target_offset+camera_offset, delta * camera_target_speed)
 	position_smoothing_speed = max(15,abs(player.velocity.x)/100,abs(player.velocity.y)/100)

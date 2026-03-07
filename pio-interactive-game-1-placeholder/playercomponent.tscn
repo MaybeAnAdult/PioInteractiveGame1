@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://b77xhxbaea8q6" path="res://Scripts/input.gd" id="9_3sma5"]
 [ext_resource type="Script" uid="uid://ck27jhi1g0f4o" path="res://Scripts/camera_2d.gd" id="10_ipct0"]
 [ext_resource type="Script" uid="uid://dmrbrudh4jw4h" path="res://Scripts/jump.gd" id="10_mr4rg"]
+[ext_resource type="Texture2D" uid="uid://bvwvmc5s31w2v" path="res://debug_assets/camera.png" id="11_7mihv"]
 [ext_resource type="Script" uid="uid://barg5kiblh703" path="res://Scripts/movement.gd" id="11_sb71o"]
-[ext_resource type="Texture2D" uid="uid://bw8fg8mpudgl8" path="res://Spritesheets/WIP.png" id="11_twkuv"]
 [ext_resource type="Script" uid="uid://b0c46hvxnyv36" path="res://Scripts/animate.gd" id="12_1v1y8"]
 [ext_resource type="Script" uid="uid://dx3fv7uvu3o0" path="res://trail_2d.gd" id="12_7mihv"]
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
@@ -930,10 +930,11 @@ script = ExtResource("9_3sma5")
 script = ExtResource("10_mr4rg")
 movement_component = NodePath("../movement")
 
-[node name="movement" type="Node" parent="Player" unique_id=1167663895 node_paths=PackedStringArray("attack_component", "dash_component")]
+[node name="movement" type="Node" parent="Player" unique_id=1167663895 node_paths=PackedStringArray("attack_component", "dash_component", "player_camera")]
 script = ExtResource("11_sb71o")
 attack_component = NodePath("../attack")
 dash_component = NodePath("../dash")
+player_camera = NodePath("../Camera2D")
 
 [node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite", "dash_component", "attack_component", "move_component")]
 script = ExtResource("12_1v1y8")
@@ -965,8 +966,7 @@ position_smoothing_speed = 15.0
 script = ExtResource("10_ipct0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D" unique_id=1997342320]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("11_twkuv")
+texture = ExtResource("11_7mihv")
 
 [node name="Trail2D" type="Line2D" parent="Player" unique_id=731634457]
 visible = false

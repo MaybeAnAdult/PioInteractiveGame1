@@ -5,14 +5,23 @@ extends Node
 @export var can_move: bool = true
 var is_crouching: bool = false
 
+@export_subgroup("Components")
+@export var attack_component: AttackComponent
+@export var dash_component: DashComponent
+@export var player_camera: PlayerCameraComponent
+
 @export_subgroup("Settings")
 @export var speed: float = 400
 @export var acceleration := 0.02
 @export var friction := 0.9
 
+@export_subgroup("Crouch Settings")
+@export var time_until_pan: float = 1
+@export var max_pan: int = 150
+@export var pan_speed: float = 0.6
+var time_crouched: float = 0
+
 @export_subgroup("Attack Lock")
-@export var attack_component: AttackComponent
-@export var dash_component: DashComponent
 @export var attack_speed_mult: float = 0.3  # Tune: 0.2 = crawl, 0.5 = brisk
 @export var attack_friction: float = 0.95   # High = smooth forward slide
 
@@ -22,6 +31,15 @@ func handle_horizontal_movement(body: CharacterBody2D, direction: float, delta) 
 	
 	is_crouching = Input.is_action_pressed("move_down") and get_parent().is_on_floor()
 	
+	if is_crouching:
+		time_crouched += delta
+		if time_crouched > time_until_pan:
+			var target_cam_offset = min((time_crouched-time_until_pan)*60*pan_speed, max_pan)
+			player_camera.camera_offset = Vector2(0,target_cam_offset)
+	else:
+		player_camera.camera_offset = Vector2.ZERO
+		time_crouched = 0
+		
 	if dash_component and dash_component.is_currently_dashing():
 		return
 	
