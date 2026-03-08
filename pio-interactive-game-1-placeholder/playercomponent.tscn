@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b0c46hvxnyv36" path="res://Scripts/animate.gd" id="12_1v1y8"]
 [ext_resource type="Script" uid="uid://dx3fv7uvu3o0" path="res://trail_2d.gd" id="12_7mihv"]
 [ext_resource type="Shader" uid="uid://b6rk86cc54t14" path="res://Vignette.gdshader" id="12_tfb15"]
+[ext_resource type="Shader" uid="uid://bta6qndheoow4" path="res://ChromaticAberration.gdshader" id="13_dinke"]
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
 [ext_resource type="Script" uid="uid://bpyydouovoue6" path="res://Scripts/attack.gd" id="14_dinke"]
 
@@ -71,6 +72,14 @@ region = Rect2(1408, 1536, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pfh7"]
 atlas = ExtResource("2_7mihv")
 region = Rect2(1536, 1536, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf0a0"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1664, 1536, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbbgn"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1792, 1536, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_afkwn"]
 atlas = ExtResource("2_7mihv")
@@ -135,6 +144,10 @@ region = Rect2(1792, 1664, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wahc3"]
 atlas = ExtResource("2_7mihv")
 region = Rect2(1920, 1664, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeu4t"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(2048, 1664, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmm8e"]
 atlas = ExtResource("2_7mihv")
@@ -509,6 +522,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1pfh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf0a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbbgn")
 }],
 "loop": false,
 "name": &"attack1",
@@ -562,6 +581,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wahc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeu4t")
 }],
 "loop": false,
 "name": &"attack2",
@@ -893,6 +915,10 @@ shader_parameter/vignette_strength = 1.0
 shader_parameter/dither_strength = 0.03
 shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6emct"]
+shader = ExtResource("13_dinke")
+shader_parameter/offset = 0.0
+
 [node name="Player" type="Node2D" unique_id=777074863 groups=["Player"]]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1288801772 node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "jump_component", "animation_component", "dash_component", "attack_component") groups=["Player"]]
@@ -920,9 +946,7 @@ shape = SubResource("RectangleShape2D_kpjcp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"dash"
-frame = 3
-frame_progress = 1.0
+animation = &"attack2"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
@@ -995,6 +1019,14 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(360, 360)
+
+[node name="ChromaticAberration" type="ColorRect" parent="Player/Camera2D" unique_id=1650330999]
+z_index = 12
+material = SubResource("ShaderMaterial_6emct")
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
 
 [node name="Trail2D" type="Line2D" parent="Player" unique_id=731634457]
 visible = false
