@@ -1,3 +1,5 @@
 res://playercomponent.tscn
 res://Vignette.gdshader
 res://ChromaticAberration.gdshader
+res://Scripts/movement.gd
+res://Scripts/dash.gd

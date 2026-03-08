@@ -13,7 +13,7 @@ var is_crouching: bool = false
 @export_subgroup("Settings")
 @export var speed: float = 250
 @export var acceleration := 0.1
-@export var friction := 0.99
+@export var friction := 0.5
 
 @export_subgroup("Crouch Settings")
 @export var time_until_pan: float = 1
@@ -22,8 +22,8 @@ var is_crouching: bool = false
 var time_crouched: float = 0
 
 @export_subgroup("Attack Lock")
-@export var attack_speed_mult: float = 0.3  # Tune: 0.2 = crawl, 0.5 = brisk
-@export var attack_friction: float = 0.95   # High = smooth forward slide
+@export var attack_speed_mult: float = 0.0  # Tune: 0.2 = crawl, 0.5 = brisk
+@export var attack_friction: float = 0.85   # High = smooth forward slide
 
 
 func handle_horizontal_movement(body: CharacterBody2D, direction: float, delta) -> void:

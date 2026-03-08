@@ -5,18 +5,18 @@ extends Node
 
 @export_subgroup("Dash Settings")
 @export var dash_distance: float = 700.0
-@export var velocity_kept: float = 0.25 # % of velocity kept after dashing
+@export var velocity_kept: float = 0.5 # % of velocity kept after dashing
 @export var dash_speed_horizontal: float = 700
 @export var dash_speed_vertical: float = 600.0
 @export var max_dashes: int = 1
 @export var dash_duration: float = 0.15
-@export var dash_cooldown: float = 0.3
+@export var dash_cooldown: float = 0.0
 @export var disable_gravity_during_dash: bool = true
 
 @export_subgroup("Afterimage Settings")
-@export var afterimage_interval: float = 0.07      # How often to spawn a ghost (smaller = denser)
-@export var afterimage_fade_time: float = 0.35     # How long each ghost takes to fade
-@export var afterimage_opacity: float = 0.7        # Starting alpha of each ghost
+@export var afterimage_interval: float = 0.04      # How often to spawn a ghost (smaller = denser)
+@export var afterimage_fade_time: float = 0.15     # How long each ghost takes to fade
+@export var afterimage_opacity: float = 1.0        # Starting alpha of each ghost
 
 var dashes_available: int = 1
 var cooldown_timer: float = 0.0

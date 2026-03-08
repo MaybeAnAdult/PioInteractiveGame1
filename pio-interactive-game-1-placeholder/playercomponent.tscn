@@ -968,7 +968,6 @@ script = ExtResource("11_sb71o")
 attack_component = NodePath("../attack")
 dash_component = NodePath("../dash")
 player_camera = NodePath("../Camera2D")
-friction = 0.5
 
 [node name="animate" type="Node" parent="Player" unique_id=1180928118 node_paths=PackedStringArray("sprite", "dash_component", "attack_component", "move_component")]
 script = ExtResource("12_1v1y8")
@@ -981,12 +980,7 @@ move_component = NodePath("../movement")
 script = ExtResource("13_tfb15")
 movement_component = NodePath("../movement")
 animation_component = NodePath("../animate")
-velocity_kept = 0.5
 max_dashes = 2000
-dash_cooldown = 0.0
-afterimage_interval = 0.04
-afterimage_fade_time = 0.15
-afterimage_opacity = 1.0
 
 [node name="attack" type="Node" parent="Player" unique_id=1741045720 node_paths=PackedStringArray("movement_component", "hitbox_node", "attack_hitbox")]
 script = ExtResource("14_dinke")
