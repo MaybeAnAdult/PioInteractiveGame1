@@ -1,14 +1,14 @@
+BackBufferCopy
+Node2D
+CanvasGroup
 ColorRect
 CanvasLayer
 Sprite2D
 ParallaxLayer
 ParallaxBackground
 Parallax2D
-Node2D
 StaticBody2D
 CollisionShape2D
 CollisionPolygon2D
 MeshInstance2D
 Area2D
-TileMapLayer
-GPUParticles2D

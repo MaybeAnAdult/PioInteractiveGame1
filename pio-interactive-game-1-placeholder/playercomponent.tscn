@@ -13,7 +13,9 @@
 [ext_resource type="Shader" uid="uid://b6rk86cc54t14" path="res://Vignette.gdshader" id="12_tfb15"]
 [ext_resource type="Shader" uid="uid://bta6qndheoow4" path="res://ChromaticAberration.gdshader" id="13_dinke"]
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
+[ext_resource type="Shader" uid="uid://dnrce6n30dlvb" path="res://Deuteranopia.gdshader" id="14_6emct"]
 [ext_resource type="Script" uid="uid://bpyydouovoue6" path="res://Scripts/attack.gd" id="14_dinke"]
+[ext_resource type="Shader" uid="uid://cn7kdv4p673so" path="res://Tritanopia.gdshader" id="15_u6j2s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esyyk"]
 size = Vector2(20.5, 34)
@@ -919,6 +921,14 @@ shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader = ExtResource("13_dinke")
 shader_parameter/offset = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6j2s"]
+shader = ExtResource("14_6emct")
+shader_parameter/type = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yvfn"]
+shader = ExtResource("15_u6j2s")
+shader_parameter/type = 0
+
 [node name="Player" type="Node2D" unique_id=777074863 groups=["Player"]]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1288801772 node_paths=PackedStringArray("input_component", "gravity_component", "movement_component", "jump_component", "animation_component", "dash_component", "attack_component") groups=["Player"]]
@@ -998,7 +1008,12 @@ script = ExtResource("10_ipct0")
 visible = false
 texture = ExtResource("11_7mihv")
 
-[node name="Vignette" type="ColorRect" parent="Player/Camera2D" unique_id=1710180601]
+[node name="CameraShaders" type="CanvasGroup" parent="Player/Camera2D" unique_id=47820543]
+
+[node name="CameraFilters" type="BackBufferCopy" parent="Player/Camera2D/CameraShaders" unique_id=1144117316]
+copy_mode = 2
+
+[node name="Vignette" type="ColorRect" parent="Player/Camera2D/CameraShaders/CameraFilters" unique_id=1710180601]
 z_index = 10
 material = SubResource("ShaderMaterial_dinke")
 anchors_preset = 8
@@ -1006,17 +1021,48 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -360.0
-offset_top = -360.0
-offset_right = 360.0
-offset_bottom = 360.0
+offset_left = -460.0
+offset_top = -460.0
+offset_right = 260.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(360, 360)
 
-[node name="ChromaticAberration" type="ColorRect" parent="Player/Camera2D" unique_id=1650330999]
+[node name="ChromaticAberration" type="ColorRect" parent="Player/Camera2D/CameraShaders/CameraFilters" unique_id=1650330999]
 z_index = 12
 material = SubResource("ShaderMaterial_6emct")
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+
+[node name="ColorblindnessOptions" type="BackBufferCopy" parent="Player/Camera2D/CameraShaders" unique_id=874971686]
+z_index = 21
+copy_mode = 2
+
+[node name="Deuteranopia" type="ColorRect" parent="Player/Camera2D/CameraShaders/ColorblindnessOptions" unique_id=566264619]
+visible = false
+z_index = 21
+material = SubResource("ShaderMaterial_u6j2s")
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+
+[node name="Protanopia" type="ColorRect" parent="Player/Camera2D/CameraShaders/ColorblindnessOptions" unique_id=1167695664]
+visible = false
+z_index = 21
+material = SubResource("ShaderMaterial_2yvfn")
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+
+[node name="Tritanopia" type="ColorRect" parent="Player/Camera2D/CameraShaders/ColorblindnessOptions" unique_id=1372325239]
+visible = false
+z_index = 21
+material = SubResource("ShaderMaterial_2yvfn")
 offset_left = -360.0
 offset_top = -360.0
 offset_right = 360.0
