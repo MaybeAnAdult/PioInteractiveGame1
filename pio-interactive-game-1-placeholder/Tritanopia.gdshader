@@ -1,4 +1,6 @@
 shader_type canvas_item;
+//tritanopia Difficulty/Inability to distuinguish blue and green as well as yellow and red.
+
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;
 render_mode unshaded;
 uniform int type : hint_range(0, 4, 1) = 0;
