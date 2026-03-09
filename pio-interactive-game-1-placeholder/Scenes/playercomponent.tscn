@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b84ptg7u5c6s0"]
 
-[ext_resource type="Script" uid="uid://dctnlre3yowyd" path="res://Scripts/playercomponent.gd" id="1_7mihv"]
+[ext_resource type="Script" uid="uid://dctnlre3yowyd" path="res://Scripts/player.gd" id="1_7mihv"]
 [ext_resource type="Texture2D" uid="uid://bl822w5mgq57y" path="res://Spritesheets/Player/PlayerSprite-Sheet.png" id="2_7mihv"]
 [ext_resource type="Script" uid="uid://ppnylshi6508" path="res://Scripts/gravity.gd" id="8_uylte"]
 [ext_resource type="Script" uid="uid://b77xhxbaea8q6" path="res://Scripts/input.gd" id="9_3sma5"]
@@ -9,13 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://bvwvmc5s31w2v" path="res://debug_assets/camera.png" id="11_7mihv"]
 [ext_resource type="Script" uid="uid://barg5kiblh703" path="res://Scripts/movement.gd" id="11_sb71o"]
 [ext_resource type="Script" uid="uid://b0c46hvxnyv36" path="res://Scripts/animate.gd" id="12_1v1y8"]
-[ext_resource type="Script" uid="uid://dx3fv7uvu3o0" path="res://trail_2d.gd" id="12_7mihv"]
-[ext_resource type="Shader" uid="uid://b6rk86cc54t14" path="res://Vignette.gdshader" id="12_tfb15"]
-[ext_resource type="Shader" uid="uid://bta6qndheoow4" path="res://ChromaticAberration.gdshader" id="13_dinke"]
+[ext_resource type="Script" uid="uid://dx3fv7uvu3o0" path="res://Scripts/trail_2d.gd" id="12_7mihv"]
+[ext_resource type="Shader" uid="uid://b6rk86cc54t14" path="res://Shaders/Vignette.gdshader" id="12_tfb15"]
+[ext_resource type="Shader" uid="uid://bta6qndheoow4" path="res://Shaders/ChromaticAberration.gdshader" id="13_dinke"]
 [ext_resource type="Script" uid="uid://bxewaws7hk8m6" path="res://Scripts/dash.gd" id="13_tfb15"]
-[ext_resource type="Shader" uid="uid://dnrce6n30dlvb" path="res://Deuteranopia.gdshader" id="14_6emct"]
-[ext_resource type="Script" uid="uid://bpyydouovoue6" path="res://Scripts/attack.gd" id="14_dinke"]
-[ext_resource type="Shader" uid="uid://cn7kdv4p673so" path="res://Tritanopia.gdshader" id="15_u6j2s"]
+[ext_resource type="Shader" uid="uid://dnrce6n30dlvb" path="res://Shaders/Deuteranopia.gdshader" id="14_6emct"]
+[ext_resource type="Script" uid="uid://bb4c3lgqhbh5s" path="res://Scripts/attack.gd" id="14_dinke"]
+[ext_resource type="Shader" uid="uid://cn7kdv4p673so" path="res://Shaders/Tritanopia.gdshader" id="15_u6j2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1rhi"]
+size = Vector2(11, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esyyk"]
 size = Vector2(20.5, 34)
@@ -195,34 +198,6 @@ region = Rect2(1152, 1792, 128, 128)
 atlas = ExtResource("2_7mihv")
 region = Rect2(1280, 1792, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x1mdl"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(1024, 2048, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u5oiq"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(1152, 2048, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hxfkq"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(1280, 2048, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4j6m"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(896, 1408, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_owjjx"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(1024, 1408, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkic2"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(1152, 1408, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mki2k"]
-atlas = ExtResource("2_7mihv")
-region = Rect2(1280, 1408, 128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmfdr"]
 atlas = ExtResource("2_7mihv")
 region = Rect2(0, 2048, 128, 128)
@@ -258,6 +233,34 @@ region = Rect2(896, 2048, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ol2b2"]
 atlas = ExtResource("2_7mihv")
 region = Rect2(1024, 2048, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1mdl"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1024, 2048, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5oiq"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1152, 2048, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxfkq"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1280, 2048, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4j6m"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(896, 1408, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owjjx"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1024, 1408, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkic2"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1152, 1408, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mki2k"]
+atlas = ExtResource("2_7mihv")
+region = Rect2(1280, 1408, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kf18u"]
 atlas = ExtResource("2_7mihv")
@@ -631,32 +634,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x1mdl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u5oiq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hxfkq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y4j6m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_owjjx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jkic2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mki2k")
-}],
-"loop": false,
-"name": &"couch->idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_rmfdr")
 }, {
 "duration": 1.0,
@@ -685,6 +662,32 @@ animations = [{
 }],
 "loop": false,
 "name": &"crouch",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1mdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5oiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxfkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4j6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owjjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkic2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mki2k")
+}],
+"loop": false,
+"name": &"crouch->idle",
 "speed": 10.0
 }, {
 "frames": [{
@@ -942,21 +945,29 @@ animation_component = NodePath("animate")
 dash_component = NodePath("dash")
 attack_component = NodePath("attack")
 
-[node name="AttackHitbox" type="Area2D" parent="Player" unique_id=1638717220]
+[node name="CollisionBox" type="CollisionShape2D" parent="Player" unique_id=996261671]
+position = Vector2(-0.5, 7)
+shape = SubResource("RectangleShape2D_y1rhi")
+debug_color = Color(0.80593675, 0.25991404, 0.80769336, 0.41960785)
 
-[node name="hitboxshape" type="CollisionShape2D" parent="Player/AttackHitbox" unique_id=1505766950]
+[node name="Hitbox" type="Area2D" parent="Player" unique_id=1638717220]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Player/Hitbox" unique_id=1505766950]
+visible = false
 z_index = 1
 position = Vector2(17.25, 2)
 shape = SubResource("RectangleShape2D_esyyk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1047164644]
+[node name="Hurtbox" type="Area2D" parent="Player" unique_id=1920620902]
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Player/Hurtbox" unique_id=1047164644]
 position = Vector2(-0.5, 7)
 shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
 position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
-animation = &"attack2"
+animation = &"attack1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
 root_node = NodePath("../../..")
@@ -992,11 +1003,8 @@ movement_component = NodePath("../movement")
 animation_component = NodePath("../animate")
 max_dashes = 2000
 
-[node name="attack" type="Node" parent="Player" unique_id=1741045720 node_paths=PackedStringArray("movement_component", "hitbox_node", "attack_hitbox")]
+[node name="attack" type="Node" parent="Player" unique_id=1741045720]
 script = ExtResource("14_dinke")
-movement_component = NodePath("../movement")
-hitbox_node = NodePath("../AttackHitbox")
-attack_hitbox = NodePath("../AttackHitbox")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
 position = Vector2(1, 7)
@@ -1039,6 +1047,7 @@ offset_bottom = 360.0
 
 [node name="ColorblindnessOptions" type="BackBufferCopy" parent="Player/Camera2D/CameraShaders" unique_id=874971686]
 z_index = 21
+position = Vector2(1, 6)
 copy_mode = 2
 
 [node name="Deuteranopia" type="ColorRect" parent="Player/Camera2D/CameraShaders/ColorblindnessOptions" unique_id=566264619]

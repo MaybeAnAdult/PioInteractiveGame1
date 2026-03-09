@@ -1,19 +1,20 @@
 [gd_scene format=4 uid="uid://dpjmnycjl2rra"]
 
-[ext_resource type="Texture2D" uid="uid://c3fqurje6qa76" path="res://Tileset.png" id="1_0e48y"]
-[ext_resource type="PackedScene" uid="uid://b84ptg7u5c6s0" path="res://playercomponent.tscn" id="2_0e48y"]
-[ext_resource type="Texture2D" uid="uid://da23kiua7xebb" path="res://Spritesheets/Environment/Test.png" id="2_epypp"]
-[ext_resource type="Script" uid="uid://bm4jvubtesws7" path="res://Scripts/boundary_reset_position.gd" id="3_0hol4"]
-[ext_resource type="Texture2D" uid="uid://bxw5dkig34skn" path="res://Spritesheets/Environment/Background.png" id="4_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://dw8uuuim0viad" path="res://Spritesheets/Environment/Background_Arches.png" id="5_kdubu"]
-[ext_resource type="Texture2D" uid="uid://cc883ub2u72j" path="res://Spritesheets/Environment/Background_Fog.png" id="6_ir8iy"]
-[ext_resource type="Texture2D" uid="uid://1tefcgi64hc7" path="res://Spritesheets/Environment/Background_Pillars.png" id="7_hqns4"]
-[ext_resource type="Texture2D" uid="uid://dyp5mn58f7ofr" path="res://Spritesheets/Environment/Fog.png" id="8_x0ka3"]
-[ext_resource type="Texture2D" uid="uid://dy6ewhxywvqlr" path="res://Spritesheets/Environment/Fog_Top.png" id="9_0h7mo"]
-[ext_resource type="Texture2D" uid="uid://6d8plkp0qr66" path="res://Spritesheets/Environment/ThickFog.png" id="10_hqns4"]
+[ext_resource type="Texture2D" uid="uid://c3fqurje6qa76" path="res://Tileset.png" id="1_2ooml"]
+[ext_resource type="Texture2D" uid="uid://da23kiua7xebb" path="res://Spritesheets/Environment/Test.png" id="2_p20hg"]
+[ext_resource type="Script" uid="uid://bm4jvubtesws7" path="res://Scripts/boundary_reset_position.gd" id="3_he4j0"]
+[ext_resource type="Texture2D" uid="uid://bxw5dkig34skn" path="res://Spritesheets/Environment/Background.png" id="4_85gyg"]
+[ext_resource type="Texture2D" uid="uid://dw8uuuim0viad" path="res://Spritesheets/Environment/Background_Arches.png" id="5_c32x4"]
+[ext_resource type="Texture2D" uid="uid://cc883ub2u72j" path="res://Spritesheets/Environment/Background_Fog.png" id="6_fg7i4"]
+[ext_resource type="Texture2D" uid="uid://1tefcgi64hc7" path="res://Spritesheets/Environment/Background_Pillars.png" id="7_gwne5"]
+[ext_resource type="Texture2D" uid="uid://dyp5mn58f7ofr" path="res://Spritesheets/Environment/Fog.png" id="8_hpu6p"]
+[ext_resource type="Texture2D" uid="uid://dy6ewhxywvqlr" path="res://Spritesheets/Environment/Fog_Top.png" id="9_op2xg"]
+[ext_resource type="Texture2D" uid="uid://6d8plkp0qr66" path="res://Spritesheets/Environment/ThickFog.png" id="10_1nvmp"]
+[ext_resource type="PackedScene" uid="uid://b84ptg7u5c6s0" path="res://Scenes/playercomponent.tscn" id="11_el1jj"]
+[ext_resource type="PackedScene" uid="uid://2nscphc4a6g1" path="res://Scenes/enemycomponent.tscn" id="12_p20hg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epypp"]
-texture = ExtResource("1_0e48y")
+texture = ExtResource("1_2ooml")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -444,7 +445,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_epypp")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hol4"]
-texture = ExtResource("2_epypp")
+texture = ExtResource("2_p20hg")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
@@ -575,7 +576,7 @@ position = Vector2(-5, 860)
 z_index = 1
 position = Vector2(152, 660)
 collision_mask = 3
-script = ExtResource("3_0hol4")
+script = ExtResource("3_he4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Level/Area2D" unique_id=3340243]
 visibility_layer = 3
@@ -598,14 +599,14 @@ motion_scale = Vector2(0.001, 0.001)
 motion_mirroring = Vector2(300, 270)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Level/ParallaxBackground/Columns" unique_id=197597977]
-texture = ExtResource("4_q6r6c")
+texture = ExtResource("4_85gyg")
 
 [node name="Fences" type="ParallaxLayer" parent="World/Level/ParallaxBackground" unique_id=400682387]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(385, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Level/ParallaxBackground/Fences" unique_id=860702050]
-texture = ExtResource("5_kdubu")
+texture = ExtResource("5_c32x4")
 
 [node name="Fog" type="ParallaxLayer" parent="World/Level/ParallaxBackground" unique_id=823498276]
 z_index = -2
@@ -613,7 +614,7 @@ position = Vector2(0, 28.333332)
 motion_mirroring = Vector2(385, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Level/ParallaxBackground/Fog" unique_id=42962872]
-texture = ExtResource("6_ir8iy")
+texture = ExtResource("6_fg7i4")
 
 [node name="Pillars" type="ParallaxLayer" parent="World/Level/ParallaxBackground" unique_id=639631179]
 z_index = -1
@@ -621,17 +622,17 @@ motion_scale = Vector2(0.05, 0.05)
 motion_mirroring = Vector2(350, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Level/ParallaxBackground/Pillars" unique_id=2028432809]
-texture = ExtResource("7_hqns4")
+texture = ExtResource("7_gwne5")
 
 [node name="Black Fog" type="ParallaxLayer" parent="World/Level/ParallaxBackground" unique_id=972264373]
 visible = false
 motion_mirroring = Vector2(385, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Level/ParallaxBackground/Black Fog" unique_id=954131215]
-texture = ExtResource("8_x0ka3")
+texture = ExtResource("8_hpu6p")
 
 [node name="Sprite2D2" type="Sprite2D" parent="World/Level/ParallaxBackground/Black Fog" unique_id=385089419]
-texture = ExtResource("9_0h7mo")
+texture = ExtResource("9_op2xg")
 
 [node name="Rear" type="ParallaxLayer" parent="World/Level/ParallaxBackground" unique_id=1072536984]
 z_index = -5
@@ -639,10 +640,14 @@ motion_scale = Vector2(3, 3)
 motion_mirroring = Vector2(300, 300)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Level/ParallaxBackground/Rear" unique_id=1243506006]
-texture = ExtResource("10_hqns4")
+texture = ExtResource("10_1nvmp")
 
-[node name="Player" parent="." unique_id=777074863 instance=ExtResource("2_0e48y")]
-position = Vector2(262, 113)
+[node name="Player" parent="." unique_id=777074863 instance=ExtResource("11_el1jj")]
+position = Vector2(257, 117)
+
+[node name="enemycomponent" parent="." unique_id=654598112 instance=ExtResource("12_p20hg")]
+position = Vector2(401.00003, 78)
+scale = Vector2(0.3, 0.3)
 
 [connection signal="area_entered" from="World/Level/Area2D" to="World/Level/Area2D" method="_on_area_entered"]
 [connection signal="body_entered" from="World/Level/Area2D" to="World/Level/Area2D" method="_on_body_entered"]

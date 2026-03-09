@@ -1,114 +1,45 @@
 extends CharacterBody2D
+@export_subgroup("Nodes")
+@export var input_component: InputComponent
+@export var gravity_component: GravityComponent
+@export var movement_component: MovementComponent
+@export var jump_component: JumpComponent
+@export var animation_component: AnimationComponent
+@export var dash_component: DashComponent
+@export var attack_component: AttackComponent
 
-@export var speed := 200.0
-@export var jump_force := -350.0
-@export var gravity := 900.0
-@export var friction := 0.95 # lower number = more friction, 0 is instant stop, 1 is no friction
-@export var acceleration := 0.02 # % of speed applied each frame up to speed
-@export var dash_force := 500 # 
-var is_attacking = false
+func _ready() -> void:
+	add_to_group("player")
 
-# Jump
-var jump_buffer_time := 0.1
-var jump_buffer_counter := 0.0
-@export var coyote_time := 0.15
-var coyote_timer := 0.0
+func _physics_process(delta: float) -> void:
+	gravity_component.handle_gravity(self, delta)
+	movement_component.handle_horizontal_movement(self, input_component.get_horizontal(), delta)
+	jump_component.handle_jump(self, input_component.get_jump_input(), delta)
+	# Variable jump height (release jump early = shorter jump)
+	if Input.is_action_just_released("jump") and jump_component.is_jumping:
+		velocity.y *= 0.5  # Cut ascent (tune 0.4–0.6)
+	attack_component.handle_attack(
+	input_component.get_attack_input(),           # normal attack button
+	Input.is_action_just_pressed("strongattack"), # ← your new strong attack button
+	delta
+)
+# Get dash input and direction
+	var want_dash = input_component.get_dash_input()
+	var dash_direction = Vector2(input_component.get_horizontal(), input_component.get_vertical())
+	dash_component.handle_dash(self, want_dash, dash_direction, $AnimatedSprite2D, delta)
+	
+	if dash_component.is_dashing:
+		$AnimatedSprite2D.play("dash")
+	
+# Reset dashes when on ground
+	if is_on_floor():
+		dash_component.reset_dashes()
 
-func _physics_process(delta):
-	# Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		coyote_timer -= delta
-	else:
-		coyote_timer = coyote_time
-	
-	# Jump Buffer
-	if Input.is_action_just_pressed("jump"):
-		jump_buffer_counter = jump_buffer_time
-	else:
-		jump_buffer_counter -= delta
-	
-	# Jump with buffer and coyote time
-	if jump_buffer_counter > 0 and coyote_timer > 0:
-		velocity.y = jump_force
-		jump_buffer_counter = 0
-		coyote_timer = 0
-	
-	# Horizontal movement
-	var dir = Input.get_axis("move_left", "move_right",)
-	#velocity.x = dir * speed
-	if dir == 0 || dir != velocity.x/abs(velocity.x):
-		velocity.x = velocity.x * friction
-	
-	if abs(velocity.x) < speed:
-		velocity.x += dir * (speed * acceleration)
-	#Dash in air
-	var vert = Input.get_axis("move_up", "move_down",)
-	var dash = false
-	if Input.is_action_just_pressed("dash") and not is_on_floor():
-		velocity.x += (dash_force * dir)
-		velocity.y += (dash_force * vert)
-	#Dash on ground
-	if Input.is_action_just_pressed("dash") and is_on_floor():
-		velocity.x += (dash_force * dir)
-#Return to normal speed after dash
-	if abs(velocity.x) > speed:
-		velocity.x = velocity.x * friction
-
-	#print("Direction:",dir)
-	#print("Velocity:",velocity.x)
+	animation_component.update_animation(
+		input_component.get_horizontal(),
+		jump_component.is_jumping,
+		gravity_component.is_falling,
+		self.velocity
+	)
 	
 	move_and_slide()
-	update_animation(dir)
-
-func update_animation(dir):
-	var sprite = $AnimatedSprite2D
-	
-	# Check if currently crouching (holding the button)
-	var is_crouched = Input.is_action_pressed("move_down") and is_on_floor()
-	
-	# Handle attack
-	if Input.is_action_just_pressed("attack") and not is_attacking:
-		is_attacking = true
-		if is_crouched:
-			sprite.play("crouch_attack")
-		else:
-			sprite.play("attack")
-		return
-	
-	# If attacking, don't change animation
-	if is_attacking:
-		return
-	
-	# Ground animations
-	if is_on_floor():
-		if is_crouched:
-			if sprite.animation != "crouch":
-				sprite.play("crouch")
-		elif dir == 0:
-			sprite.play("idle")
-		else:
-			sprite.play("walk",abs(velocity.x)/50)
-	# Air animations
-	else:
-		if velocity.y < 0:
-			sprite.play("jump")
-		else:
-			sprite.play("fall")
-	
-	# Flip sprite based on direction
-	if dir != 0:
-		sprite.flip_h = dir < 0
-
-func _on_animated_sprite_2d_animation_finished():
-	var sprite = $AnimatedSprite2D
-	
-	if sprite.animation == "attack":
-		is_attacking = false
-	elif sprite.animation == "crouch_attack":
-		is_attacking = false
-		# Go back to crouch pose if still holding crouch button
-		if Input.is_action_pressed("crouch") and is_on_floor():
-			sprite.play("crouch")
-			sprite.frame = sprite.sprite_frames.get_frame_count("crouch") - 1
-			sprite.pause()

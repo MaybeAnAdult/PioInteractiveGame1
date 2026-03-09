@@ -62,7 +62,7 @@ func handle_horizontal_movement(body: CharacterBody2D, direction: float, delta) 
 		if abs(body.velocity.x) < speed:
 			body.velocity.x += direction * speed * acceleration
 		if direction != 0 and attack_component.is_attacking():
-			attack_component.stop_attack()
+			attack_component.force_stop()
 	else:
 		_apply_friction(body, attack_friction, delta)
 		can_move = attack_component.attack_cancel_test(true)
