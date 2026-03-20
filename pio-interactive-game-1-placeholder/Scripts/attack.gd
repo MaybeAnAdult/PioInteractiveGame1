@@ -8,7 +8,11 @@ extends Node
 @export var attack_cooldown: float = 0.05
 
 @export_group("Hitbox")
-@export var attack_hitbox: Area2D  # Drag your AttackHitbox Area2D here
+@export var light1_area: Area2D
+@export var light2_area: Area2D
+@export var strong_area: Area2D
+
+
 
 var current_attack: int = 0          # 1 or 2 for lights, 3 for strong
 var next_light: int = 1              # toggles between 1 and 2

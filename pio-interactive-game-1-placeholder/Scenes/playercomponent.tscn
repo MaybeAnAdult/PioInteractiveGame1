@@ -17,11 +17,154 @@
 [ext_resource type="Script" uid="uid://bb4c3lgqhbh5s" path="res://Scripts/attack.gd" id="14_dinke"]
 [ext_resource type="Shader" uid="uid://cn7kdv4p673so" path="res://Shaders/Tritanopia.gdshader" id="15_u6j2s"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owshs"]
+size = Vector2(42, 18)
+
+[sub_resource type="Animation" id="Animation_y1rhi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_owshs")]
+}
+
+[sub_resource type="Animation" id="Animation_owshs"]
+resource_name = "attack1"
+length = 0.3
+step = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_owshs")]
+}
+
+[sub_resource type="Animation" id="Animation_lr5d0"]
+resource_name = "attack2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack2"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_owshs")]
+}
+
+[sub_resource type="Animation" id="Animation_oyras"]
+resource_name = "strongattack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack3"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lr5d0"]
+_data = {
+&"RESET": SubResource("Animation_y1rhi"),
+&"attack1": SubResource("Animation_owshs"),
+&"attack2": SubResource("Animation_lr5d0"),
+&"strongattack": SubResource("Animation_oyras")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1rhi"]
 size = Vector2(11, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_esyyk"]
-size = Vector2(20.5, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
 size = Vector2(11, 16)
@@ -904,14 +1047,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_kpjcp"]
-resource_name = "Walk"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kne1u"]
-_data = {
-&"Walk": SubResource("Animation_kpjcp")
-}
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dinke"]
 shader = ExtResource("12_tfb15")
 shader_parameter/inner_radius = 0.1
@@ -945,33 +1080,36 @@ animation_component = NodePath("animate")
 dash_component = NodePath("dash")
 attack_component = NodePath("attack")
 
+[node name="AttackArea" type="Area2D" parent="Player" unique_id=2002720886]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackArea" unique_id=1297074905]
+position = Vector2(13, 8)
+shape = SubResource("RectangleShape2D_owshs")
+disabled = true
+debug_color = Color(0.97370416, 0, 0.420809, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=2075381835]
+libraries/ = SubResource("AnimationLibrary_lr5d0")
+
 [node name="CollisionBox" type="CollisionShape2D" parent="Player" unique_id=996261671]
-position = Vector2(-0.5, 7)
+visible = false
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_y1rhi")
+disabled = true
 debug_color = Color(0.80593675, 0.25991404, 0.80769336, 0.41960785)
 
-[node name="Hitbox" type="Area2D" parent="Player" unique_id=1638717220]
-
-[node name="HitboxShape" type="CollisionShape2D" parent="Player/Hitbox" unique_id=1505766950]
-visible = false
-z_index = 1
-position = Vector2(17.25, 2)
-shape = SubResource("RectangleShape2D_esyyk")
-
 [node name="Hurtbox" type="Area2D" parent="Player" unique_id=1920620902]
+visible = false
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="Player/Hurtbox" unique_id=1047164644]
-position = Vector2(-0.5, 7)
+visible = false
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1911977380]
-position = Vector2(0, 5)
+position = Vector2(0, 7)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
 animation = &"attack1"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D" unique_id=1997337101]
-root_node = NodePath("../../..")
-libraries/ = SubResource("AnimationLibrary_kne1u")
 
 [node name="gravity" type="Node" parent="Player" unique_id=259109108 node_paths=PackedStringArray("dash_component")]
 script = ExtResource("8_uylte")
@@ -1005,8 +1143,11 @@ max_dashes = 2000
 
 [node name="attack" type="Node" parent="Player" unique_id=1741045720]
 script = ExtResource("14_dinke")
+combo_reset_time = null
+attack_cooldown = null
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1963275285]
+visible = false
 position = Vector2(1, 7)
 limit_smoothed = true
 position_smoothing_speed = 15.0
@@ -1017,11 +1158,14 @@ visible = false
 texture = ExtResource("11_7mihv")
 
 [node name="CameraShaders" type="CanvasGroup" parent="Player/Camera2D" unique_id=47820543]
+visible = false
 
 [node name="CameraFilters" type="BackBufferCopy" parent="Player/Camera2D/CameraShaders" unique_id=1144117316]
+visible = false
 copy_mode = 2
 
 [node name="Vignette" type="ColorRect" parent="Player/Camera2D/CameraShaders/CameraFilters" unique_id=1710180601]
+visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_dinke")
 anchors_preset = 8
@@ -1038,6 +1182,7 @@ grow_vertical = 2
 pivot_offset = Vector2(360, 360)
 
 [node name="ChromaticAberration" type="ColorRect" parent="Player/Camera2D/CameraShaders/CameraFilters" unique_id=1650330999]
+visible = false
 z_index = 12
 material = SubResource("ShaderMaterial_6emct")
 offset_left = -360.0
@@ -1046,8 +1191,9 @@ offset_right = 360.0
 offset_bottom = 360.0
 
 [node name="ColorblindnessOptions" type="BackBufferCopy" parent="Player/Camera2D/CameraShaders" unique_id=874971686]
+visible = false
 z_index = 21
-position = Vector2(1, 6)
+position = Vector2(-2, 0)
 copy_mode = 2
 
 [node name="Deuteranopia" type="ColorRect" parent="Player/Camera2D/CameraShaders/ColorblindnessOptions" unique_id=566264619]

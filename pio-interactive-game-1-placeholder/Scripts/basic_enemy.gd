@@ -30,7 +30,7 @@ func _ready():
 	if sprite_frames:
 		sprite.sprite_frames = sprite_frames
 	add_to_group("enemies")
-	hitbox.body_entered.connect(_on_hitbox_body_entered)
+#	hitbox.body_entered.connect(_on_hitbox_body_entered)
 
 func _physics_process(delta):
 	# **GRAVITY: Mirror player's GravityComponent**
@@ -96,6 +96,6 @@ func die():
 	await sprite.animation_finished
 	queue_free()
 
-func _on_hitbox_body_entered(body):
-	if body.is_in_group("player"):
-		body.take_damage(1, (body.global_position - global_position).normalized())
+#func _on_hitbox_body_entered(body):
+#	if body.is_in_group("player"):
+#		body.take_damage(1, (body.global_position - global_position).normalized())

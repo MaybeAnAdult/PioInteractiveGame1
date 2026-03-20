@@ -1,5 +1,7 @@
+AnimationPlayer
 CollisionShape2D
 Area2D
+Node
 AnimatedSprite2D
 CharacterBody2D
 BackBufferCopy
@@ -11,4 +13,3 @@ Sprite2D
 ParallaxLayer
 ParallaxBackground
 Parallax2D
-StaticBody2D
