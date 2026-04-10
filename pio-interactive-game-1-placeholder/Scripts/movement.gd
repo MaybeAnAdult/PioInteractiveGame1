@@ -44,18 +44,18 @@ func handle_horizontal_movement(body: CharacterBody2D, direction: float, delta) 
 		return
 	
 	# ATTACK LOCK: Slow slide in facing direction ONLY (no turning!)
-	#if attack_component and attack_component.is_attacking():
-	#	var sprite = body.get_node("AnimatedSprite2D")
-	#	var facing_dir = -1.0 if sprite.flip_h else 1.0
-	#	
-	#	# Heavy friction → natural slowdown + forward commitment
-	#	body.velocity.x *= attack_friction
-	#	
-	#	# Accelerate ONLY forward (input ignored for turning)
-	#	var target_speed = speed * attack_speed_mult
-	#	if abs(body.velocity.x) < target_speed:
-	#		body.velocity.x += facing_dir * target_speed * acceleration
-	#	return
+	if attack_component and attack_component.is_attacking():
+		var sprite = body.get_node("AnimatedSprite2D")
+		var facing_dir = -1.0 if sprite.flip_h else 1.0
+		
+		# Heavy friction → natural slowdown + forward commitment
+		body.velocity.x *= attack_friction
+		
+		# Accelerate ONLY forward (input ignored for turning)
+		var target_speed = speed * attack_speed_mult
+		if abs(body.velocity.x) < target_speed:
+			body.velocity.x += facing_dir * target_speed * acceleration
+		return
 	
 	# NORMAL movement (your original logic)
 	if can_move:

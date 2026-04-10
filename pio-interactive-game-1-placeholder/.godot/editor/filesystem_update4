@@ -1,8 +1,17 @@
+res://Scripts/attack.gd
 res://Scenes/playercomponent.tscn
+res://Shaders/Deuteranopia.gdshader
 res://Shaders/Vignette.gdshader
 res://Shaders/ChromaticAberration.gdshader
-res://Shaders/Deuteranopia.gdshader
-res://Shaders/Tritanopia.gdshader
 res://Shaders/Protanopia.gdshader
-res://addons/to-do-list/themes/task-theme.tres
-res://Scripts/attack.gd
+res://Shaders/Tritanopia.gdshader
+res://Scripts/movement.gd
+res://Scenes/node_2d.tscn
+res://To do list.md
+res://Scripts/global.gd
+res://Scripts/input.gd
+res://Scripts/player.gd
+res://Scenes/testworld.tscn
+res://Scenes/player.tscn
+res://Scripts/animate.gd
+res://Scenes/basesoldier.tscn

@@ -12,6 +12,8 @@ extends Node
 @export var light2_area: Area2D
 @export var strong_area: Area2D
 
+var current_hitbox
+
 
 
 var current_attack: int = 0          # 1 or 2 for lights, 3 for strong
@@ -25,15 +27,15 @@ var attack_facing_direction: float = 1.0
 func is_attacking() -> bool:
 	if not sprite or not sprite.is_playing():
 		return false
-	return sprite.animation in ["attack1", "attack2", "attack3", "crouch_attack"]
+	return sprite.animation in ["attack1", "attack2", "attack3"]
 
 func get_attack_facing_dir() -> float:
 	return attack_facing_direction
 
 func _ready():
 	sprite.animation_finished.connect(_on_animation_finished)
-	if attack_hitbox:
-		attack_hitbox.body_entered.connect(_on_hitbox_body_entered)
+	if current_hitbox:
+		current_hitbox.body_entered.connect(_on_hitbox_body_entered)
 
 func handle_attack(light_just_pressed: bool, strong_just_pressed: bool, delta: float) -> void:
 	last_attack_time += delta
@@ -41,6 +43,7 @@ func handle_attack(light_just_pressed: bool, strong_just_pressed: bool, delta: f
 	# Reset combo if idle too long
 	if not is_attacking() and last_attack_time > combo_reset_time and current_attack != 0:
 		current_attack = 0
+		current_hitbox = light1_area
 		next_light = 1
 		_deactivate_hitbox()
 		return
@@ -68,25 +71,31 @@ func start_attack(level: int) -> void:
 	current_attack = level
 	var anim_name = "attack" + str(level)
 	sprite.play(anim_name)
-
+	match current_attack:
+		0:
+			current_hitbox = light1_area
+		1:
+			current_hitbox = light2_area
+		3:
+			current_hitbox = strong_area
 	last_attack_time = 0.0
 	hit_objects.clear()
 	_activate_hitbox()
 
 	# Lock movement during any attack
-	if movement_component:
-		movement_component.can_move = false
+	#if movement_component:
+	#	movement_component.can_move = false
 
 	# Lock facing direction
 	attack_facing_direction = 1.0 if not sprite.flip_h else -1.0
 
 func _activate_hitbox() -> void:
-	if attack_hitbox:
-		attack_hitbox.monitoring = true
+	if current_hitbox:
+		current_hitbox.monitoring = true
 
 func _deactivate_hitbox() -> void:
-	if attack_hitbox:
-		attack_hitbox.monitoring = false
+	if current_hitbox:
+		current_hitbox.monitoring = false
 		hit_objects.clear()
 
 func _on_animation_finished():
@@ -103,8 +112,8 @@ func _on_animation_finished():
 		current_attack = 0
 
 	# Re-enable movement
-	if movement_component:
-		movement_component.can_move = true
+	#if movement_component:
+	#	movement_component.can_move = true
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and body not in hit_objects:

@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= 0.5  # Cut ascent (tune 0.4–0.6)
 	attack_component.handle_attack(
 	input_component.get_attack_input(),           # normal attack button
-	Input.is_action_just_pressed("strongattack"), # ← your new strong attack button
+	input_component.get_strong_attack_input(),
 	delta
 )
 # Get dash input and direction

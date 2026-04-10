@@ -19,3 +19,6 @@ func get_dash_input() -> bool:
 
 func get_attack_input() -> bool:
 	return Input.is_action_just_pressed("attack")
+
+func get_strong_attack_input() -> bool:
+	return Input.is_action_just_pressed("strongattack")

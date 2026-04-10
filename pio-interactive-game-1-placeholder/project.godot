@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="PioInteractive Game1 Placeholder"
-run/main_scene="res://Scenes/node_2d.tscn"
+run/main_scene="res://Scenes/testworld.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Spritesheets/icon.svg"
+
+[autoload]
+
+GameManager="*uid://bs77a5l7lx1e5"
 
 [display]
 

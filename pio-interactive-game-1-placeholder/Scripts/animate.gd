@@ -3,63 +3,103 @@ extends Node
 
 @export_subgroup("Nodes")
 @export var sprite: AnimatedSprite2D
-@export_subgroup("References")  #drag Dash node here for clean access
+
+@export_subgroup("References")
 @export var dash_component: DashComponent
 @export var attack_component: AttackComponent
 @export var move_component: MovementComponent
 
+func _ready() -> void:
+	# Connect signals to handle the "Strong Attack" movement lock automatically
+	if sprite:
+		if not sprite.animation_finished.is_connected(_on_animation_finished):
+			sprite.animation_finished.connect(_on_animation_finished)
+
+## SAFE PLAY FUNCTION: Prevents crashes if an animation is missing
+func safe_play(anim_name: String) -> void:
+	if not sprite: return
+	
+	if sprite.sprite_frames.has_animation(anim_name):
+		sprite.play(anim_name)
+	else:
+		# Fallback: if 'attack3' is missing, try generic 'attack', else 'idle'
+		if "attack" in anim_name and sprite.sprite_frames.has_animation("attack"):
+			sprite.play("attack")
+		else:
+			sprite.play(sprite.sprite_frames.get_animation_names()[0]) # Plays first available (usually idle)
 
 func handle_horizontal_flip(move_direction: float) -> void:
+	if not sprite: return
 	if move_direction > 0:
 		sprite.flip_h = false
 	elif move_direction < 0:
 		sprite.flip_h = true
 
+## Re-added to fix the "Nonexistent function" error in player.gd
 func reset_rotation() -> void:
-	sprite.rotation = 0
+	if sprite:
+		sprite.rotation = 0
 
-func update_animation(move_direction: float, is_jumping: bool, is_falling: bool, velocity: Vector2):
+func update_animation(move_direction: float, is_jumping: bool, is_falling: bool, velocity: Vector2) -> void:
+	# Safety check to prevent "null value" errors
+	if not sprite: return
 
-	
-	# Flip ONLY if NOT dashing/attacking (NO TURNING during attack!)
+	# Flip ONLY if NOT dashing or attacking
 	if not (dash_component and dash_component.is_currently_dashing()) \
 		and not (attack_component and attack_component.is_attacking()):
 		handle_horizontal_flip(move_direction)
 		
-# HIGHEST PRIORITY: Dash (new!)
+	# HIGHEST PRIORITY: Dash
 	if dash_component and dash_component.is_currently_dashing():
-		if velocity[1] != 0 and velocity[0] != 0:
+		# Only rotate if we have velocity
+		if velocity.y != 0 or velocity.x != 0:
 			sprite.rotation = deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90))
-		#	print(deg_to_rad(wrapf(rad_to_deg(velocity.angle()), -90, 90)))
-		sprite.play("dash")
+		safe_play("dash")
 		return
 	
-	# HIGH PRIORITY: Attacks (don't interrupt)
-	if sprite.is_playing() and sprite.animation in ["attack1", "attack2", "attack3", "crouch_attack"]:
+	# HIGH PRIORITY: Attacks (Don't interrupt)
+	if sprite.is_playing() and sprite.animation in ["attack1", "attack2", "attack3"]:
+		# Movement Lock logic for the Strong Attack
+		if sprite.animation == "attack3" and move_component:
+			move_component.can_move = false
 		return
 	
-	# Jump
-	if is_jumping:
-		sprite.play("jump")
-		return
+	# Reset rotation once dashing stops
+	reset_rotation()
 
-	# Fall
+	# Jump/Fall
+	if is_jumping:
+		safe_play("jump")
+		return
 	if is_falling:
-		sprite.play("fall")
+		safe_play("fall")
 		return
 	
-	# Crouch (ground + down input)
+	# Crouch Logic
+	if move_component and move_component.is_crouching:
+		if sprite.animation != "crouch":
+			safe_play("crouch")
+		return
 	
-	if move_component.is_crouching and sprite.animation != "crouch":
-		sprite.play("crouch")
+	# Transition from Crouch to Idle
+	if move_component and not move_component.is_crouching and sprite.animation == "crouch":
+		if sprite.sprite_frames.has_animation("crouch->idle"):
+			safe_play("crouch->idle")
+		else:
+			safe_play("idle")
 		return
-	if move_component.is_crouching:
-		return
-	if !move_component.is_crouching and sprite.animation == "crouch":
-		sprite.play("crouch->idle")
 
 	# Ground movement
 	if move_direction != 0:
-		sprite.play("walk",log(abs(velocity[0])/60))
-	elif sprite.animation:
-		sprite.play("idle")
+		# Use velocity to determine walk speed/animation
+		safe_play("walk")
+	else:
+		safe_play("idle")
+
+func _on_animation_finished() -> void:
+	if not sprite: return
+	
+	# Automatically unlock movement when the Strong Attack (attack3) ends
+	if sprite.animation == "attack3":
+		if move_component:
+			move_component.can_move = true
